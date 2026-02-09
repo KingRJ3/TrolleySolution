@@ -4,7 +4,7 @@ class_name CameraShake
 ##often I like to make the camera global and then acess this via code, but for this example the camera will be instantiated here
 
 var decay := .8 #How quickly shaking will stop [0,1].
-var max_offset := Vector2(480*.01,272*.01) #this reduces how much your camera can shake
+var max_offset := Vector2(1152*.01,648*.01) #this reduces how much your camera can shake
 var max_roll = 0.01 #Maximum rotation in radians (use sparingly).
 @onready var noise = preload("res://ProoblesToys/cam_noise.tres") #required, you can customize this noise to change shaking properties
 
@@ -15,11 +15,12 @@ var jitter = Vector2.ZERO
 
 var tension = 2 #this simulates the camera going back to its orignal position like an elastic spring
 var damp = .1 #this changes how fast your camera resets to its original state
-var target_pos = Vector2(0,0) # where to reset your position back to, its a variable that never changes
+var target_pos = Vector2.ZERO # where to reset your position back to, its a variable that never changes
 var shake_pos = Vector2(0,0) #this gets changed to simulate an offset 
 var velocity = Vector2.ZERO #changes how fast your offset changes
 
 func _ready():
+	position =  Vector2(1152*.5,648*.5)
 	ignore_rotation = false #allows the camera to rotate
 	randomize() #makes the random systems more random
 
@@ -33,7 +34,7 @@ func _process(delta):
 	shake_pos += velocity + jitter
 	
 	offset = shake_pos #this is the property that moves the camera
-
+	
 func shake(): #random jitter
 	var amt = pow(trauma, trauma_pwr)
 	noise_y += 1
@@ -47,3 +48,9 @@ func add_trauma(amount : float, direction : Vector2): #CALL THIS FUNCTION TO STA
 	trauma = min(trauma + amount, 2.0) #for the regular camera shake motion
 	velocity += direction #for the spring camera motion
 	#noise.seed = randi()
+
+func rotate_trans(trans_time):
+	pass
+	#var cam_rotation_tween = get_tree().create_tween()
+	#cam_rotation_tween.tween_property(self, 'rotation', deg_to_rad(2), trans_time*.4).set_ease(Tween.EASE_OUT)
+	#cam_rotation_tween.tween_property(self, 'rotation', deg_to_rad(0), trans_time*.7).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)

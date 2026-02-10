@@ -20,6 +20,10 @@ config/icon="uid://csn2jbd74g3rq"
 MainCamera="*uid://b2ualapjj7bh"
 Director="*uid://cwiuo8ouea0ln"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 exit={

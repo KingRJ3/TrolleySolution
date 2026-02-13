@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qq8yifa5qa43"
-path="res://.godot/imported/tyson2.png-03200cdbc740e44845f673605b97e1fd.ctex"
+uid="uid://yvk6vu6dwuli"
+path="res://.godot/imported/tyson1.png-5fda2d224667386553b73e14d0cbb693.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Frameworks(YourStuff)/Connor/art/tyson2.png"
-dest_files=["res://.godot/imported/tyson2.png-03200cdbc740e44845f673605b97e1fd.ctex"]
+source_file="res://Frameworks(YourStuff)/Connor/art/references/tyson1.png"
+dest_files=["res://.godot/imported/tyson1.png-5fda2d224667386553b73e14d0cbb693.ctex"]
 
 [params]
 

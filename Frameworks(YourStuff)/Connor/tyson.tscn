@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://0aumljktykh2" path="res://Frameworks(YourStuff)/Connor/tyson.gd" id="1_yxrwa"]
 [ext_resource type="Texture2D" uid="uid://cu75lgxg68lw0" path="res://Frameworks(YourStuff)/Connor/art/rreararm1.png" id="2_djko1"]
 [ext_resource type="Texture2D" uid="uid://sm2r4r0uciry" path="res://Frameworks(YourStuff)/Connor/art/rforearm1.png" id="3_atjw6"]
+[ext_resource type="Texture2D" uid="uid://ipdjt76m5isw" path="res://Frameworks(YourStuff)/Connor/art/rfist1.png" id="4_atjw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlpjk"]
 size = Vector2(125, 569)
@@ -10,8 +11,13 @@ size = Vector2(125, 569)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tfjl"]
 size = Vector2(196.29633, 17.60234)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oahid"]
-size = Vector2(35, 78)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwa4r"]
+radius = 31.304878
+height = 140.43323
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jwoe7"]
+radius = 28.44989
+height = 150.53735
 
 [node name="Tyson" type="Node2D" unique_id=460236819]
 script = ExtResource("1_yxrwa")
@@ -44,8 +50,15 @@ rotation = 0.50265485
 shape = SubResource("RectangleShape2D_0tfjl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Left Arm/Left Rear Arm" unique_id=1286125258]
+position = Vector2(76, -52.999996)
+rotation = -4.420919
+scale = Vector2(0.5, 0.78588694)
+texture = ExtResource("2_djko1")
+flip_h = true
+flip_v = true
 
 [node name="Left Forearm" type="RigidBody2D" parent="Left Arm/Left Rear Arm" unique_id=1560133300]
+z_index = -1
 collision_layer = 0
 collision_mask = 0
 
@@ -60,8 +73,15 @@ rotation = -1.1728612
 shape = SubResource("RectangleShape2D_0tfjl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Left Arm/Left Rear Arm/Left Forearm" unique_id=1259289035]
+position = Vector2(173.47498, -85.12939)
+rotation = -4.420919
+scale = Vector2(0.79629046, 0.5)
+texture = ExtResource("3_atjw6")
+flip_h = true
+flip_v = true
 
 [node name="Left Fist" type="RigidBody2D" parent="Left Arm/Left Rear Arm/Left Forearm" unique_id=1086688783]
+z_index = 1
 
 [node name="Left Fist Connector" type="PinJoint2D" parent="Left Arm/Left Rear Arm/Left Forearm/Left Fist" unique_id=1753527265]
 position = Vector2(233, -179)
@@ -69,11 +89,18 @@ node_a = NodePath("../..")
 node_b = NodePath("..")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Left Arm/Left Rear Arm/Left Forearm/Left Fist" unique_id=1246207519]
-position = Vector2(233, -179)
-rotation = -0.25132743
-shape = SubResource("RectangleShape2D_oahid")
+position = Vector2(252, -216.99998)
+rotation = -2.6755898
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_cwa4r")
 
 [node name="Glove" type="Sprite2D" parent="Left Arm/Left Rear Arm/Left Forearm/Left Fist" unique_id=1325635191]
+position = Vector2(251, -214.99998)
+rotation = -4.3161993
+scale = Vector2(0.51332927, 0.47781146)
+texture = ExtResource("4_atjw6")
+flip_h = true
+flip_v = true
 
 [node name="Right Arm" type="Node2D" parent="." unique_id=494331189]
 z_index = 2
@@ -129,8 +156,12 @@ node_a = NodePath("../..")
 node_b = NodePath("..")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Right Arm/Right Rear Arm/Right Forearm/Right Fist" unique_id=1001135339]
-position = Vector2(168, -89.000015)
-rotation = -0.25132743
-shape = SubResource("RectangleShape2D_oahid")
+position = Vector2(181, -135)
+rotation = -2.7925267
+shape = SubResource("CapsuleShape2D_jwoe7")
 
 [node name="Glove" type="Sprite2D" parent="Right Arm/Right Rear Arm/Right Forearm/Right Fist" unique_id=1506042556]
+position = Vector2(174, -146)
+rotation = -1.3962634
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_atjw6")

@@ -4,11 +4,22 @@ extends Game
 @export var tb_scene: PackedScene
 @export var tb_angle: float = 45
 var screen_size: Vector2 = Vector2.ZERO
+var winstate: bool = true
+
+var btimer: Timer
+var gtimer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _start_game():
+	btimer = $"Ball Timer"
+	gtimer = $"Game Timer"
 	screen_size = get_viewport_rect().size
 	$Tyson.position = Vector2(screen_size.x / 3, screen_size.y / 2)
+
+	btimer.wait_time = 0.75 / get_intensity()
+	gtimer.wait_time = 5 / get_intensity()
+	btimer.start()
+	gtimer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -29,3 +40,7 @@ func _on_ball_timer_timeout() -> void:
 	
 	add_child(tennis_ball)
 	return
+
+
+func _on_game_timer_timeout() -> void:
+	emit_signal("end_game", winstate)

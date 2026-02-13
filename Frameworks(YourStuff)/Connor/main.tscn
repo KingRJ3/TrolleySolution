@@ -3,7 +3,15 @@
 [ext_resource type="Script" uid="uid://b5l5qwi8qvqys" path="res://Frameworks(YourStuff)/Connor/main.gd" id="1_qlpjk"]
 [ext_resource type="PackedScene" uid="uid://how4ldnve1vp" path="res://Frameworks(YourStuff)/Connor/tennis_ball.tscn" id="2_nmg0t"]
 [ext_resource type="PackedScene" uid="uid://cxymrx6g58j1" path="res://Frameworks(YourStuff)/Connor/tyson.tscn" id="2_oahid"]
-[ext_resource type="Script" uid="uid://depk5dxgmhoog" path="res://Frameworks(YourStuff)/Connor/ball_timer.gd" id="4_h7kk7"]
+
+[sub_resource type="GDScript" id="GDScript_0tfjl"]
+script/source = "extends Timer
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	# Set self.time_left on start so this can speed up
+	return
+"
 
 [node name="Main" type="Node2D" unique_id=1991793190]
 script = ExtResource("1_qlpjk")
@@ -13,9 +21,11 @@ metadata/_edit_lock_ = true
 
 [node name="Tyson" parent="." unique_id=460236819 instance=ExtResource("2_oahid")]
 
+[node name="Game Timer" type="Timer" parent="." unique_id=1897668822]
+
 [node name="Ball Timer" type="Timer" parent="." unique_id=331244111]
 process_callback = 0
-autostart = true
-script = ExtResource("4_h7kk7")
+script = SubResource("GDScript_0tfjl")
 
+[connection signal="timeout" from="Game Timer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="Ball Timer" to="." method="_on_ball_timer_timeout"]

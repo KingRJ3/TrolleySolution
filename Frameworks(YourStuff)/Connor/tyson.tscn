@@ -3,13 +3,15 @@
 [ext_resource type="Script" uid="uid://0aumljktykh2" path="res://Frameworks(YourStuff)/Connor/tyson.gd" id="1_yxrwa"]
 [ext_resource type="Texture2D" uid="uid://cu75lgxg68lw0" path="res://Frameworks(YourStuff)/Connor/art/rreararm1.png" id="2_djko1"]
 [ext_resource type="Texture2D" uid="uid://dmsah608m34tq" path="res://Frameworks(YourStuff)/Connor/art/lreararm6.png" id="2_ewf7b"]
+[ext_resource type="Texture2D" uid="uid://700rdf1mix45" path="res://Frameworks(YourStuff)/Connor/art/head6.png" id="2_ov7jn"]
+[ext_resource type="Texture2D" uid="uid://dd8amkbev1aqj" path="res://Frameworks(YourStuff)/Connor/art/body.png" id="2_uwr0c"]
 [ext_resource type="Texture2D" uid="uid://sm2r4r0uciry" path="res://Frameworks(YourStuff)/Connor/art/rforearm1.png" id="3_atjw6"]
 [ext_resource type="Texture2D" uid="uid://cn51juu3wp3d6" path="res://Frameworks(YourStuff)/Connor/art/lforearm6.png" id="3_uwr0c"]
 [ext_resource type="Texture2D" uid="uid://ipdjt76m5isw" path="res://Frameworks(YourStuff)/Connor/art/rfist1.png" id="4_atjw6"]
 [ext_resource type="Texture2D" uid="uid://carces8rd4okb" path="res://Frameworks(YourStuff)/Connor/art/lfist6.png" id="4_ov7jn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlpjk"]
-size = Vector2(125, 569)
+size = Vector2(125, 514.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tfjl"]
 size = Vector2(196.29633, 17.60234)
@@ -26,14 +28,26 @@ height = 150.53735
 script = ExtResource("1_yxrwa")
 metadata/_edit_lock_ = true
 
+[node name="Head" type="Sprite2D" parent="." unique_id=1253943465]
+z_index = 1
+position = Vector2(13.999999, -127)
+scale = Vector2(0.86, 1)
+texture = ExtResource("2_ov7jn")
+
 [node name="Body" type="StaticBody2D" parent="." unique_id=939007600]
 z_index = 1
 
 [node name="Hitbox" type="CollisionShape2D" parent="Body" unique_id=1396103958]
-position = Vector2(0, -1.5258789e-05)
+position = Vector2(0, 27.249992)
 shape = SubResource("RectangleShape2D_qlpjk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Body" unique_id=697845464]
+position = Vector2(-0.92309165, 75)
+rotation = 3.1415927
+scale = Vector2(0.2017483, 0.4270581)
+texture = ExtResource("2_uwr0c")
+flip_h = true
+flip_v = true
 
 [node name="Left Arm" type="Node2D" parent="." unique_id=1300417985]
 

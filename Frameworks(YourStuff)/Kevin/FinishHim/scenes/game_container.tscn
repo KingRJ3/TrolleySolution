@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ckba23jn4blex"]
+
+[ext_resource type="Script" uid="uid://dkpdmxtyfwg73" path="res://Frameworks(YourStuff)/Kevin/FinishHim/scenes/game_container.gd" id="1_ipijm"]
+[ext_resource type="PackedScene" uid="uid://23ldqrlrursk" path="res://Frameworks(YourStuff)/Kevin/FinishHim/scenes/game.tscn" id="2_gfphe"]
+
+[node name="GameContainer" type="Node2D" unique_id=1346086696]
+script = ExtResource("1_ipijm")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2137257685]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1413658230]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Game" parent="SubViewportContainer/SubViewport" unique_id=871968955 instance=ExtResource("2_gfphe")]

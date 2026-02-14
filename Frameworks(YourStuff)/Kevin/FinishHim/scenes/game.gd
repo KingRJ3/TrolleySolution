@@ -1,0 +1,337 @@
+extends Node2D
+
+## Generally ranges between 1.0 and something higher.
+@export var ultra_hardcore_difficulty = 1.0
+
+# The fastest the player can reasonably consistently do this game (even with bad rng) is like 3.5 seconds.
+# So 4 seconds will be the fastest this game can go.
+# Max of 10 seconds?
+
+var game_container: Game
+
+@onready var key = load("res://Frameworks(YourStuff)/Kevin/FinishHim/objects/key.tscn")
+@onready var ember = load("res://Frameworks(YourStuff)/Kevin/FinishHim/objects/ember.tscn")
+@onready var bomb = load("res://Frameworks(YourStuff)/Kevin/FinishHim/objects/bomb.tscn")
+@onready var icicle = load("res://Frameworks(YourStuff)/Kevin/FinishHim/objects/icicle.tscn")
+@onready var tiny_particle = load("res://Frameworks(YourStuff)/Kevin/FinishHim/objects/tiny_particle.tscn")
+
+@onready var camera_anim: AnimationPlayer = $"Camera2D/AnimationPlayer"
+
+@onready var move_on_timer = $"Move On Timer"
+@onready var digital_timer_update_timer = $"Digital Timer Update Timer"
+@onready var fatality_timer = $"Fatality Timer"
+
+@onready var timer_digit_1 = $"Digit 1"
+@onready var timer_digit_2 = $"Digit 2"
+
+@onready var health_bar_1 = $"Health Bar"
+@onready var health_bar_2 = $"Health Bar 2"
+
+@onready var good_kevin = $"Good Kevin"
+@onready var evil_kevin = $"Evil Kevin"
+
+@onready var bg_darken = $"Background Darkener/AnimationPlayer"
+@onready var finish_him = $"Finish Him"
+
+@onready var music = $"Music"
+
+enum INPUTS {up, left, down, right}
+
+## If this project CRASHES AND DOESN'T FUNCTION, rename the up, left, down, and right inputs to match
+# the inputs they're named as in the actual project
+var target_input_names = ["finish_him_up", "finish_him_left", "finish_him_down", "finish_him_right"]
+
+var key_input_order = []
+var key_nodes = []
+
+# every rigid body ends up here for the earthquake
+var all_shakeable_rigid_bodies = []
+
+var time_left: int = 20 # weird digital display, in half seconds, of time left
+
+var remaining_spawning_things = 100
+
+var shake_amount = 800
+
+var won = false
+
+var take_inputs = false
+
+var all_embers = []
+var is_scared = false
+
+func start_game(new_difficulty: float):
+	process_mode = Node.PROCESS_MODE_INHERIT
+	# add inputs if they don't exist
+	# good for umdware
+	if not InputMap.has_action("finish_him_up"):
+		# up
+		var up = InputEventKey.new()
+		up.keycode = KEY_W
+		var up2 = InputEventKey.new()
+		up2.keycode = KEY_UP
+		InputMap.add_action("finish_him_up")
+		InputMap.action_add_event("finish_him_up", up)
+		InputMap.action_add_event("finish_him_up", up2)
+		
+		# left
+		var left = InputEventKey.new()
+		left.keycode = KEY_A
+		var left2 = InputEventKey.new()
+		left2.keycode = KEY_LEFT
+		InputMap.add_action("finish_him_left")
+		InputMap.action_add_event("finish_him_left", left)
+		InputMap.action_add_event("finish_him_left", left2)
+		
+		# down
+		var down = InputEventKey.new()
+		down.keycode = KEY_S
+		var down2 = InputEventKey.new()
+		down2.keycode = KEY_DOWN
+		InputMap.add_action("finish_him_down")
+		InputMap.action_add_event("finish_him_down", down)
+		InputMap.action_add_event("finish_him_down", down2)
+		
+		# right
+		var right = InputEventKey.new()
+		right.keycode = KEY_D
+		var right2 = InputEventKey.new()
+		right2.keycode = KEY_RIGHT
+		InputMap.add_action("finish_him_right")
+		InputMap.action_add_event("finish_him_right", right)
+		InputMap.action_add_event("finish_him_right", right2)
+		
+		# the everything button
+		InputMap.add_action("finish_him_keyboard")
+		InputMap.action_add_event("finish_him_keyboard", up)
+		InputMap.action_add_event("finish_him_keyboard", up2)
+		InputMap.action_add_event("finish_him_keyboard", left)
+		InputMap.action_add_event("finish_him_keyboard", left2)
+		InputMap.action_add_event("finish_him_keyboard", down)
+		InputMap.action_add_event("finish_him_keyboard", down2)
+		InputMap.action_add_event("finish_him_keyboard", right)
+		InputMap.action_add_event("finish_him_keyboard", right2)
+		
+	bg_darken.stop(true)
+	bg_darken.play("start")
+	
+	ultra_hardcore_difficulty = new_difficulty
+	# balancing for UMDware
+	var number_of_keys = clampi(int((ultra_hardcore_difficulty * 5)), 5, 10)
+	# balancing for standalone
+	# var number_of_keys = clampi(int((ultra_hardcore_difficulty * 2.5 + 2.6)), 5, 10)
+	for i in number_of_keys:
+		var new_input = randi_range(0, 3)
+		# add inputs
+		key_input_order.append(new_input)
+		# add keys
+		var new_key = key.instantiate()
+		add_child(new_key)
+		new_key.ready_by_parent(i, new_input)
+		key_nodes.append(new_key)
+	key_nodes[0].raring_to_go()
+	# difficulty balancing for UMDware
+	time_left = 1 + clamp(15 - 5 * ultra_hardcore_difficulty, 3, 10) * 2
+	# difficulty balancing for standalone
+	# time_left = 1 + clamp(12 - 2 * ultra_hardcore_difficulty, 3, 10) * 2
+	digital_timer_update_timer.start()
+	_on_digital_timer_update_timer_timeout()
+	all_shakeable_rigid_bodies.append(evil_kevin)
+	all_shakeable_rigid_bodies.append(timer_digit_1)
+	all_shakeable_rigid_bodies.append(timer_digit_2)
+	all_shakeable_rigid_bodies.append(health_bar_1)
+	all_shakeable_rigid_bodies.append(health_bar_2)
+	for n in key_nodes:
+		all_shakeable_rigid_bodies.append(n)
+	finish_him.play()
+	
+	# music hell
+	var shift = AudioEffectPitchShift.new()
+	shift.pitch_scale = time_left / 20.0
+	AudioServer.add_bus()
+	AudioServer.set_bus_name(AudioServer.get_bus_count() - 1, "Finish Him Music")
+	AudioServer.add_bus_effect(AudioServer.get_bus_count() - 1, shift, 0)
+	music.bus = "Finish Him Music"
+	music.pitch_scale = 20.0 / time_left
+	music.play()
+	
+	take_inputs = true
+
+func _physics_process(_delta: float) -> void:
+	if take_inputs:
+		if Input.is_action_just_pressed(target_input_names[key_input_order[0]]):
+			# succesful input!
+			camera_anim.stop()
+			camera_anim.play("tiny_shake_" + str(target_input_names[key_input_order[0]]))
+			key_nodes[0].get_got()
+			key_nodes.pop_front()
+			good_kevin.set_frame(key_input_order.pop_front())
+			if key_input_order.is_empty():
+				# you win!
+				you_win()
+			else:
+				key_nodes[0].raring_to_go()
+		elif Input.is_action_just_pressed("finish_him_keyboard"):
+			# fail!
+			you_lose()
+	if is_scared:
+		spawn_spectral_particle()
+
+func _on_move_on_timer_timeout() -> void:
+	next_game()
+
+func you_win():
+	take_inputs = false
+	won = true
+	good_kevin.get_got()
+	bg_darken.get_parent().show()
+	bg_darken.play("darken")
+	digital_timer_update_timer.stop()
+	music.stop()
+	music.bus = "Master"
+	music.pitch_scale = 1.0
+	music.stream = load("res://Frameworks(YourStuff)/Kevin/FinishHim/audio/fatality.wav")
+	music.play()
+
+func you_lose():
+	for k in key_nodes:
+		k.you_lose()
+	take_inputs = false
+	good_kevin.you_lose()
+	evil_kevin.you_lose()
+	move_on_timer.start()
+	digital_timer_update_timer.stop()
+	move_on_timer.wait_time = 3
+	move_on_timer.start()
+	finish_him.you_lose()
+	music.stop()
+	music.bus = "Master"
+	music.pitch_scale = 1.0
+	music.stream = load("res://Frameworks(YourStuff)/Kevin/FinishHim/audio/fail.wav")
+	music.play()
+
+
+func _on_digital_timer_update_timer_timeout() -> void:
+	if time_left > -1:
+		time_left -= 1
+	if time_left >= 0:
+		if time_left >= 10:
+			@warning_ignore("integer_division")
+			timer_digit_1.new_frame(int(time_left/10))
+		else:
+			timer_digit_1.new_frame(0)
+		timer_digit_2.new_frame(time_left%10)
+	else:
+		timer_digit_1.new_frame(10)
+		timer_digit_2.new_frame(10)
+		you_lose()
+
+func spawn_ember(spawn_pos: Vector2):
+	var new_ember = ember.instantiate()
+	add_child(new_ember)
+	new_ember.position = spawn_pos
+	all_embers.append(new_ember)
+
+func spawn_icicle():
+	if remaining_spawning_things:
+		var new_icicle = icicle.instantiate()
+		add_child(new_icicle)
+		new_icicle.position = Vector2(evil_kevin.position.x, evil_kevin.position.y - 300)
+		remaining_spawning_things -= 1
+		good_kevin.play_icicle_sound()
+
+func launch_embers():
+	for emb in all_embers:
+		emb.apply_impulse(Vector2(200, -50))
+
+func spawn_bomb():
+	var new_bomb = bomb.instantiate()
+	add_child(new_bomb)
+	new_bomb.position = Vector2(good_kevin.position.x + 100, good_kevin.position.y)
+	for i in 30:
+		var new_particle = tiny_particle.instantiate()
+		add_child(new_particle)
+		new_particle.ready_by_parent(2)
+		new_particle.position = Vector2(good_kevin.position.x + 75, good_kevin.position.y - 40)
+	move_on_timer.wait_time = 2
+	move_on_timer.start()
+	camera_anim.stop()
+	camera_anim.play("bomb")
+
+func spawn_spectral_particle():
+	remaining_spawning_things -= 1
+	if remaining_spawning_things > 0:
+		var new_particle = tiny_particle.instantiate()
+		add_child(new_particle)
+		new_particle.ready_by_parent(3)
+		new_particle.position = Vector2(good_kevin.position.x + 360, good_kevin.position.y - randi_range(50, 150))
+
+func hurt_evil_kevin():
+	evil_kevin.get_got()
+
+func freeze_evil_kevin():
+	evil_kevin.freeze()
+	move_on_timer.wait_time = 4
+	move_on_timer.start()
+	camera_anim.stop()
+	camera_anim.play("winter_wonderland")
+
+func scare_evil_kevin():
+	evil_kevin.get_scared()
+	for b in all_shakeable_rigid_bodies:
+		b.is_scared = true
+	is_scared = true
+	move_on_timer.wait_time = 3
+	move_on_timer.start()
+	camera_anim.stop()
+	camera_anim.play("ghoulish_party")
+
+func start_freeze_timer():
+	spawn_icicle()
+	fatality_timer.wait_time = 0.1
+	fatality_timer.start()
+
+func _on_fatality_timer_timeout() -> void:
+	spawn_icicle()
+
+func spawn_baby_ice(pos: Vector2):
+	for i in 2:
+		var new_particle = tiny_particle.instantiate()
+		call_deferred("add_child", new_particle)
+		new_particle.ready_by_parent(0)
+		new_particle.position = Vector2(pos.x, pos.y + 18)
+
+func shake_ground():
+	for b in all_shakeable_rigid_bodies:
+		b.apply_impulse(Vector2(randf_range(-200, 200), randf_range(-600, -1000)))
+		b.collision_layer = 1
+		b.collision_mask = 1
+	for i in 30:
+		var new_particle = tiny_particle.instantiate()
+		add_child(new_particle)
+		new_particle.ready_by_parent(1)
+		new_particle.position = Vector2(randi_range(-200, 200), 141)
+	hurt_evil_kevin()
+	move_on_timer.wait_time = 3
+	move_on_timer.start()
+	camera_anim.stop()
+	camera_anim.play("big_shake")
+	# shake_amount += shake_increment
+
+func shake_it():
+	camera_anim.stop()
+	camera_anim.play("winter_wonderland")
+
+func start_shaking():
+	camera_anim.stop()
+	camera_anim.play("little_shake")
+
+func pause_shaking():
+	camera_anim.stop()
+
+func next_game():
+	# in UMDware, this moves this game along
+	# also get rid of that bus we added for the music so we don't overload the server with busses
+	AudioServer.remove_bus(AudioServer.get_bus_count() - 1)
+	game_container.emit_signal("end_game", won)
+	# emit_signal("end_game", won)

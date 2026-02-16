@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://how4ldnve1vp"]
 
 [ext_resource type="Script" uid="uid://dsgi5ge47yyw1" path="res://Frameworks(YourStuff)/Connor/tennis_ball.gd" id="1_wj4vc"]
+[ext_resource type="Texture2D" uid="uid://6pusf6a2lcb2" path="res://Frameworks(YourStuff)/Connor/art/tennis_ball.png" id="2_gs1h8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_olth1"]
 
@@ -8,14 +9,19 @@
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_wj4vc")
-base_yspeed = 1400
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1439462338]
 shape = SubResource("CircleShape2D_olth1")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2020893464]
+position = Vector2(-8.940697e-07, 7.1525574e-07)
+scale = Vector2(0.7999999, 0.8)
+texture = ExtResource("2_gs1h8")
+metadata/_edit_lock_ = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1755624898]
+metadata/_edit_lock_ = true
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

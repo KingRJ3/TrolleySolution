@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b5l5qwi8qvqys" path="res://Frameworks(YourStuff)/Connor/main.gd" id="1_qlpjk"]
 [ext_resource type="PackedScene" uid="uid://cxymrx6g58j1" path="res://Frameworks(YourStuff)/Connor/tyson.tscn" id="2_oahid"]
 [ext_resource type="PackedScene" uid="uid://d0jmc8km4re78" path="res://tennis_ball_launcher.tscn" id="3_0tfjl"]
+[ext_resource type="Texture2D" uid="uid://ct2om30l0e3f0" path="res://Frameworks(YourStuff)/Connor/art/boxing ring.png" id="4_nmg0t"]
 
 [node name="Main" type="Node2D" unique_id=1991793190]
 script = ExtResource("1_qlpjk")
@@ -10,11 +11,17 @@ metadata/_custom_type_script = "uid://d28a1gihixqie"
 metadata/_edit_lock_ = true
 
 [node name="Tyson" parent="." unique_id=460236819 instance=ExtResource("2_oahid")]
-position = Vector2(80, 431)
+position = Vector2(83, 275)
 
 [node name="Tennis Ball Launcher" parent="." unique_id=1646039142 instance=ExtResource("3_0tfjl")]
-position = Vector2(1041, 511)
+position = Vector2(1015, 475)
 
 [node name="Game Timer" type="Timer" parent="." unique_id=1897668822]
+
+[node name="Boxing Ring" type="Sprite2D" parent="." unique_id=1373002015]
+z_index = -1
+position = Vector2(578, 383.00003)
+scale = Vector2(1.2850001, 1.2164179)
+texture = ExtResource("4_nmg0t")
 
 [connection signal="timeout" from="Game Timer" to="." method="_on_game_timer_timeout"]

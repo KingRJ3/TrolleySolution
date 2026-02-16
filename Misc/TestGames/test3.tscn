@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://v2fh4qwgxwaj"]
 
-[ext_resource type="Script" uid="uid://d28a1gihixqie" path="res://DebugSampleGames/Scripts/MicroGameRoot.gd" id="1_kaa10"]
+[ext_resource type="Script" uid="uid://d28a1gihixqie" path="res://Frameworks(YourStuff)/Game.gd" id="1_kaa10"]
 
 [node name="Test3" type="Node2D" unique_id=196970558]
 script = ExtResource("1_kaa10")

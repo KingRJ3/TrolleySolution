@@ -10,7 +10,7 @@ const ENGINE_SPEED_INCREASE = 0.2
 
 const TRANS_TIME = 1.0
 ## List of all available games to play
-const BASEPLATE = preload("res://Frameworks(YourStuff)/Jude/BasePlate/Baseplate.tscn")
+const BASEPLATE = preload("res://Frameworks(YourStuff)/BasePlate/Baseplate.tscn")
 const VANDALISM_JUDE_ = preload("res://Frameworks(YourStuff)/Jude/ShakeColors/Vandalism(Jude).tscn")
 
 var all_games : Array[PackedScene] = [BASEPLATE, VANDALISM_JUDE_]
@@ -18,6 +18,9 @@ var all_games : Array[PackedScene] = [BASEPLATE, VANDALISM_JUDE_]
 var games_to_play_this_stage : Array[PackedScene]
 var score : int = 0
 var lives = 3
+
+var old_scene = null
+
 func _ready() -> void:
 #region Loader of files in Games folder
 
@@ -38,10 +41,10 @@ func _ready() -> void:
 	#games_to_play_this_stage = all_games.duplicate()
 #endregion
 	games_to_play_this_stage = all_games.duplicate()
-	switch_scene(null)
+	switch_scene()
 	global_ui_container.set_lives(lives)
-	
-func _on_game_ended(old_scene : Node, won : bool):
+
+func _on_game_ended(won : bool):
 	if won:
 		score += 1
 	else:
@@ -57,10 +60,11 @@ func _on_game_ended(old_scene : Node, won : bool):
 		game_intensity += ENGINE_SPEED_INCREASE
 		global_ui_container.set_lvl_intensity(game_intensity)
 		games_to_play_this_stage = all_games.duplicate()
-		
-	switch_scene(old_scene)
+	
+	
+	switch_scene()
 
-func switch_scene(old_scene : Node):
+func switch_scene():
 	if old_scene != null:
 		var tween_leaver = get_tree().create_tween()
 		tween_leaver.tween_property(old_scene, 'position', end_point.position, TRANS_TIME).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
@@ -69,6 +73,8 @@ func switch_scene(old_scene : Node):
 		await tween_leaver.finished
 		old_scene.queue_free()
 		await old_scene.tree_exited
+		old_scene = null
+	
 	var next_game : PackedScene = games_to_play_this_stage.pick_random()
 	games_to_play_this_stage.erase(next_game)
 	var new_game : Game = next_game.instantiate()
@@ -78,18 +84,15 @@ func switch_scene(old_scene : Node):
 	tween_starter_position.tween_property(new_game, 'position', play_point.position, TRANS_TIME).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 #region DEBUG ensuring that the next game has necessary signal and method
-	if "game_finished" not in new_game:
-		printerr("game_finished signal not found in ", new_game)
-		switch_scene(null)
-		return
-	if "start_game" not in new_game:
+	if "_start_game" not in new_game:
 		printerr("start_game method not found in ", new_game)
-		switch_scene(null)
+		switch_scene()
 		return
 	
 #endregion
 	# set up next game
-	new_game.game_finished.connect(_on_game_ended)
+	old_scene = new_game
+	new_game.end_game.connect(_on_game_ended)
 	await new_game.ready
 	await tween_starter_position.finished
 	new_game._start_game()

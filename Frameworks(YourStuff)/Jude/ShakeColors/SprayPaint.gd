@@ -1,5 +1,4 @@
-extends Node2D
-@onready var GameRoot: Game = $".."
+extends Game
 
 @onready var rich_text_label: RichTextLabel = $Description
 @onready var timer_words: RichTextLabel = $TimerWords
@@ -23,7 +22,7 @@ func _process(delta: float) -> void:
 			time_done.emit()
 	timer_words.text = str(snapped(timer, .01))
 	
-func _on_game_root_start_game() -> void:
+func _start_game() -> void:
 	started = true
 	rich_text_label.show()
 	
@@ -33,11 +32,11 @@ func _on_game_root_start_game() -> void:
 	rich_text_label.hide()
 	timer_words.show()
 	started = true
-	spray_wall.total_needed = 5/GameRoot.get_intensity()
-	progress_bar.max_value = 5/GameRoot.get_intensity()
+	spray_wall.total_needed = 5/get_intensity()
+	progress_bar.max_value = 5/get_intensity()
 	
-	timer = 7/GameRoot.get_intensity()
+	timer = 7/get_intensity()
 	await time_done
 	player.started = false
-	GameRoot.end_game.emit(won) #defaults to false if button is not pressed
+	end_game.emit(won) #defaults to false if button is not pressed
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

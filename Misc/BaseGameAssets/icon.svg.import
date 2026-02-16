@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clj05tcdxmbnf"
-path="res://.godot/imported/icon.jpg-3adbca89bbfcd011e350b5eafb4f6ea8.ctex"
+uid="uid://cyyenrerkwd77"
+path="res://.godot/imported/icon.svg-de8673c4a77fff8ce02cc9d7ac0f5a01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Frameworks(YourStuff)/Jude/BasePlate/icon.jpg"
-dest_files=["res://.godot/imported/icon.jpg-3adbca89bbfcd011e350b5eafb4f6ea8.ctex"]
+source_file="res://Misc/BaseGameAssets/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-de8673c4a77fff8ce02cc9d7ac0f5a01.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

@@ -1,5 +1,4 @@
 extends Game
-@onready var GameRoot: Game = $".."
 
 @onready var Description: RichTextLabel = $Description
 @onready var button: Button = $Button
@@ -24,11 +23,12 @@ func _on_button_pressed() -> void:
 	button.modulate = Color.GREEN
 	won = true
 
-func _on_game_root_start_game() -> void:
+
+func _start_game() -> void:
 	Description.show()
 	await get_tree().create_timer(1.0).timeout #wait for instructions
 	timer_words.show()
 	button.show()
-	timer = 2/GameRoot.get_intensity()
+	timer = 2/get_intensity()
 	await time_done
-	GameRoot.end_game.emit(won) #defaults to false if button is not pressed
+	end_game.emit(won) #defaults to false if button is not pressed

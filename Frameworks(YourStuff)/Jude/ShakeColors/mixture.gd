@@ -1,6 +1,7 @@
 class_name Mixture extends RigidBody2D
 
 @onready var polygon_2d: Polygon2D = $Polygon2D
+@onready var paint_drop_spot: Marker2D = $"../PaintDropSpot"
 
 const TEX_BLUE = preload("res://Frameworks(YourStuff)/Jude/MixColors/blue.png")
 const TEX_RED = preload("res://Frameworks(YourStuff)/Jude/MixColors/red.png")
@@ -47,7 +48,9 @@ func interact_once():
 	freeze = true
 	await get_tree().create_timer(.1).timeout
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "global_position", Vector2(164,50), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	var rot_tween = get_tree().create_tween()
+	rot_tween.tween_property(self, "rotation", rotation - PI, .5).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(self, "global_position", paint_drop_spot.global_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	freeze = false
 

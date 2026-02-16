@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://n73cmic5pigu"]
 
-[ext_resource type="Script" uid="uid://3k2cle7mjkg" path="res://Game Manager/game_manager.gd" id="1_j06dl"]
-[ext_resource type="Script" uid="uid://p42uyc4iex8u" path="res://Game Manager/global_ui_container.gd" id="2_smvuq"]
-[ext_resource type="AudioStream" uid="uid://7bc2yqr6mup1" path="res://ProoblesToys/PerfectSF.mp3" id="3_dg13d"]
-[ext_resource type="AudioStream" uid="uid://1fvdk51uy21p" path="res://ProoblesToys/ARGH.mp3" id="4_6krua"]
+[ext_resource type="Script" uid="uid://3k2cle7mjkg" path="res://Misc/Game Manager/game_manager.gd" id="1_j06dl"]
+[ext_resource type="Script" uid="uid://p42uyc4iex8u" path="res://Misc/Game Manager/global_ui_container.gd" id="2_smvuq"]
+[ext_resource type="AudioStream" uid="uid://7bc2yqr6mup1" path="res://Misc/BaseGameAssets/PerfectSF.mp3" id="3_dg13d"]
+[ext_resource type="AudioStream" uid="uid://1fvdk51uy21p" path="res://Misc/BaseGameAssets/ARGH.mp3" id="4_6krua"]
 
 [node name="GameManager" type="Node" unique_id=1844071725]
 script = ExtResource("1_j06dl")

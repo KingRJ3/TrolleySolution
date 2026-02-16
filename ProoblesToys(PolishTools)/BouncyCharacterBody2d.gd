@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name BouncyCharacter extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") #980
 var stand_threshold = 100

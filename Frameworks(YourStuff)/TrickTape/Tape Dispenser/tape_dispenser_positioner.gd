@@ -6,6 +6,8 @@ extends Node3D
 @onready var down: Marker3D = $Down
 @onready var visuals_container: Node = $VisualsContainer
 @onready var dispenser_visuals : Array[Node] = visuals_container.get_children()
+@onready var arrow: Sprite3D = $Arrow
+@onready var arrow_fade_player: AnimationPlayer = $arrow_fade_player
 
 @onready var positions : Array[Marker3D] = [left, right, up, down]
 @onready var available_positions : Array[Marker3D] = positions.duplicate()
@@ -26,6 +28,17 @@ func set_new_dispenser_location():
 			sprite.visible = true
 		else:
 			sprite.visible = false
+	arrow_fade_player.play("arrow_fade")
+	match next_position.name:
+		"Left":
+			arrow.global_rotation = Vector3(0.0, 0.0, deg_to_rad(180))
+		"Right":
+			arrow.global_rotation = Vector3.ZERO
+		"Up":
+			arrow.global_rotation = Vector3(0.0, 0.0, deg_to_rad(90))
+		"Down":
+			arrow.global_rotation = Vector3(0.0, 0.0, deg_to_rad(-90))
+			
 
 
 func _physics_process(_delta: float) -> void:

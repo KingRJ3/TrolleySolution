@@ -27,14 +27,17 @@ func _start_game():
 
 func lost_game() -> void:
 	win_lose_screen.lost()
-	await get_tree().create_timer(1.5).timeout
-	get_tree().paused = true
+	
+	
 	parallax_background.lost_game()
+	
 	var tweenie : Tween = get_tree().create_tween()
 	tweenie.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE).set_parallel(true)
 	tweenie.tween_property(blood_1, "modulate", Color.WHITE, 1.0)
 	tweenie.tween_property(blood_2, "modulate", Color.WHITE, 1.0)
 	await win_lose_screen.lost_anim_finished
+	await get_tree().create_timer(1.5).timeout
+	get_tree().paused = true
 	Input.set_custom_mouse_cursor(null)
 	print('move on to next game')
 	end_game.emit(false)

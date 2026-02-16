@@ -28,6 +28,7 @@ func _ready() -> void:
 
 func pause():
 	paused = true
+	go_to_next_package()
 
 func _input(event: InputEvent) -> void:
 	if event is not InputEventMouseMotion:

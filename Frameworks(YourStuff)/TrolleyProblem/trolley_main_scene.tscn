@@ -1,0 +1,203 @@
+[gd_scene load_steps=14 format=3 uid="uid://c238ygf44nakg"]
+
+[ext_resource type="Script" uid="uid://wdn2wr30uret" path="res://Frameworks(YourStuff)/TrolleyProblem/trolley_main_scene.gd" id="1_5r37p"]
+[ext_resource type="Texture2D" uid="uid://dp2hyqwspwn4m" path="res://Frameworks(YourStuff)/TrolleyProblem/Background.png" id="2_e4jqk"]
+[ext_resource type="Script" uid="uid://c7fftraadncp3" path="res://Frameworks(YourStuff)/TrolleyProblem/trolley.gd" id="3_mt2fa"]
+[ext_resource type="PackedScene" uid="uid://b8rq2ubeegylq" path="res://Frameworks(YourStuff)/TrolleyProblem/sprite.tscn" id="4_mbjx7"]
+[ext_resource type="Script" uid="uid://nxfl1a5s2prt" path="res://Frameworks(YourStuff)/TrolleyProblem/lever_logic.gd" id="5_5k2l5"]
+[ext_resource type="AudioStream" uid="uid://0kap8m3cu3r7" path="res://Frameworks(YourStuff)/TrolleyProblem/Sound/Click_louder_81,000.wav" id="6_0lthb"]
+[ext_resource type="Texture2D" uid="uid://cxp1xabw1k6dn" path="res://Frameworks(YourStuff)/TrolleyProblem/SpacebarAsset.png" id="7_lnkg2"]
+[ext_resource type="FontFile" uid="uid://trce0cyeuigj" path="res://Frameworks(YourStuff)/TrolleyProblem/FreeMurderFont/Youmurdererbb-pwoK.otf" id="8_sdwgn"]
+[ext_resource type="Script" uid="uid://cx5kcb7j7lfhl" path="res://Frameworks(YourStuff)/TrolleyProblem/life's_purpose.gd" id="9_kcrn6"]
+[ext_resource type="PackedScene" uid="uid://byuhuanhja38i" path="res://Frameworks(YourStuff)/TrolleyProblem/screams.tscn" id="10_8tqfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80nbo"]
+size = Vector2(184.62616, 105.86746)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(56.5, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
+size = Vector2(340, 20)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_5r37p")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(581, 349)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_e4jqk")
+
+[node name="Trolley" type="CharacterBody2D" parent="."]
+z_index = 1
+script = ExtResource("3_mt2fa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trolley"]
+position = Vector2(-107.99988, 4.000061)
+rotation = 0.36651915
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_80nbo")
+
+[node name="Timer" type="Timer" parent="Trolley"]
+wait_time = 4.0
+one_shot = true
+
+[node name="Sprite" parent="Trolley" instance=ExtResource("4_mbjx7")]
+position = Vector2(-210, 0)
+scale = Vector2(0.25, 0.25)
+offset = Vector2(232, -140)
+hframes = 4
+vframes = 4
+
+[node name="Fork" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fork"]
+position = Vector2(510.75, 241)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="TopVictims" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopVictims"]
+position = Vector2(860, 131)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="AlivePerson" parent="TopVictims" instance=ExtResource("4_mbjx7")]
+position = Vector2(876, 131)
+scale = Vector2(0.25, 0.25)
+region_enabled = true
+region_rect = Rect2(980, 2611.3438, 603.7031, 649.2656)
+
+[node name="AliveGroup" parent="TopVictims" instance=ExtResource("4_mbjx7")]
+position = Vector2(841, 150)
+scale = Vector2(0.25, 0.25)
+hframes = 4
+vframes = 4
+frame = 12
+
+[node name="DeadGroup" parent="TopVictims" instance=ExtResource("4_mbjx7")]
+visible = false
+position = Vector2(859, 126)
+scale = Vector2(0.25, 0.25)
+region_enabled = true
+region_rect = Rect2(1378.6868, 3236.414, 990.9844, 831.5156)
+
+[node name="DeadPerson" parent="TopVictims" instance=ExtResource("4_mbjx7")]
+visible = false
+position = Vector2(869, 132)
+scale = Vector2(0.25, 0.25)
+region_enabled = true
+region_rect = Rect2(2119.0774, 2575.7578, 558.1406, 603.7031)
+
+[node name="BottomVictims" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomVictims"]
+position = Vector2(803, 344)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="AlivePerson" parent="BottomVictims" instance=ExtResource("4_mbjx7")]
+position = Vector2(816, 347)
+scale = Vector2(0.25, 0.233)
+region_enabled = true
+region_rect = Rect2(980, 2611.3438, 603.7031, 649.2656)
+
+[node name="DeadPerson" parent="BottomVictims" instance=ExtResource("4_mbjx7")]
+visible = false
+position = Vector2(810, 345)
+scale = Vector2(0.25, 0.25)
+region_enabled = true
+region_rect = Rect2(2119.0774, 2575.7578, 558.1406, 603.7031)
+
+[node name="AliveGroup" parent="BottomVictims" instance=ExtResource("4_mbjx7")]
+position = Vector2(774, 370)
+scale = Vector2(0.25, 0.25)
+hframes = 4
+vframes = 4
+frame = 12
+
+[node name="DeadGroup" parent="BottomVictims" instance=ExtResource("4_mbjx7")]
+visible = false
+position = Vector2(789, 351)
+scale = Vector2(0.25, 0.25)
+region_enabled = true
+region_rect = Rect2(1378.6868, 3236.414, 990.9844, 831.5156)
+
+[node name="TrackTurn" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrackTurn"]
+position = Vector2(680, -15)
+shape = SubResource("RectangleShape2D_feb5d")
+
+[node name="LeverLogic" type="Node2D" parent="."]
+script = ExtResource("5_5k2l5")
+
+[node name="ClickLouder81,000" type="AudioStreamPlayer" parent="LeverLogic"]
+stream = ExtResource("6_0lthb")
+
+[node name="LeverNormal" parent="LeverLogic" instance=ExtResource("4_mbjx7")]
+position = Vector2(243, 445)
+scale = Vector2(0.25, 0.25)
+region_enabled = true
+region_rect = Rect2(114.32739, 1869.5391, 717.6094, 797.34375)
+
+[node name="LeverToggled" parent="LeverLogic" instance=ExtResource("4_mbjx7")]
+visible = false
+position = Vector2(240, 431)
+scale = Vector2(0.25, 0.25)
+region_enabled = true
+region_rect = Rect2(820.54614, 1801.1953, 751.78125, 774.5625)
+
+[node name="StraightLines" type="Line2D" parent="LeverLogic"]
+visible = false
+points = PackedVector2Array(445, 269, 579, 311)
+default_color = Color(0.9882353, 0.09803922, 0.09803922, 1)
+
+[node name="Line2D7" type="Line2D" parent="LeverLogic/StraightLines"]
+points = PackedVector2Array(476, 206, 605, 248)
+default_color = Color(0.9882353, 0.09803922, 0.09803922, 1)
+
+[node name="UpLines" type="Line2D" parent="LeverLogic"]
+visible = false
+points = PackedVector2Array(519, 280, 605, 250)
+default_color = Color(0.9882353, 0.09803922, 0.09803922, 1)
+
+[node name="Line2D5" type="Line2D" parent="LeverLogic/UpLines"]
+points = PackedVector2Array(469, 219, 558, 184)
+default_color = Color(0.9882353, 0.09803922, 0.09803922, 1)
+
+[node name="SpacebarAsset" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(247, 561)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_lnkg2")
+region_enabled = true
+region_rect = Rect2(1510.3594, 0, 1298.5313, 672.9375)
+
+[node name="Life\'sPurpose" type="Label" parent="."]
+offset_left = 54.0
+offset_top = 153.0
+offset_right = 1055.0
+offset_bottom = 298.0
+theme_override_colors/font_color = Color(0.7806944, 1.9492954e-06, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("8_sdwgn")
+theme_override_font_sizes/font_size = 175
+text = "Maximize Casualties"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_kcrn6")
+
+[node name="Timer" type="Timer" parent="Life\'sPurpose"]
+one_shot = true
+autostart = true
+
+[node name="EndGameWait" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Screams" parent="." instance=ExtResource("10_8tqfj")]
+
+[connection signal="timeout" from="Trolley/Timer" to="Trolley" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Fork" to="." method="_on_fork_body_entered"]
+[connection signal="body_entered" from="TopVictims" to="." method="_on_top_victims_body_entered"]
+[connection signal="body_entered" from="BottomVictims" to="." method="_on_bottom_victims_body_entered"]
+[connection signal="body_entered" from="TrackTurn" to="." method="_on_track_turn_body_entered"]
+[connection signal="timeout" from="Life\'sPurpose/Timer" to="Life\'sPurpose" method="_on_timer_timeout"]
+[connection signal="timeout" from="EndGameWait" to="." method="_on_end_game_wait_timeout"]

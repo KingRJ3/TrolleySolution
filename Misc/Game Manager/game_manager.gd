@@ -3,7 +3,8 @@ class_name GameManager extends Node
 @onready var start_point: Marker2D = $StartPoint
 @onready var play_point: Marker2D = $PlayPoint
 @onready var end_point: Marker2D = $EndPoint
-@onready var global_ui_container: GlobalUI = $GlobalUIContainer
+#@onready var global_ui_container: GlobalUI = $GlobalUIContainer
+@onready var global_ui_container: GlobalUI = $Control
 
 var game_intensity : float = 1.0
 const ENGINE_SPEED_INCREASE = 0.2
@@ -12,8 +13,9 @@ const TRANS_TIME = 1.0
 ## List of all available games to play
 const BASEPLATE = preload("res://Frameworks(YourStuff)/BasePlate/Baseplate.tscn")
 const VANDALISM_JUDE_ = preload("res://Frameworks(YourStuff)/Jude/ShakeColors/Vandalism(Jude).tscn")
+const TRICK_TAPE = preload("res://Frameworks(YourStuff)/TrickTape/Main/game_main.tscn")
 
-var all_games : Array[PackedScene] = [BASEPLATE, VANDALISM_JUDE_]
+var all_games : Array[PackedScene] = [BASEPLATE, VANDALISM_JUDE_, TRICK_TAPE]
 ## List of games left to play this stage before time scale increases
 var games_to_play_this_stage : Array[PackedScene]
 var score : int = 0

@@ -1,9 +1,17 @@
-class_name GlobalUI extends SubViewportContainer
+class_name GlobalUI extends Control
 
-@onready var lvl_intensity: Label = $GlobalUI/Control/LvlIntensity
-@onready var lives: Label = $GlobalUI/Control/Lives
-@onready var color_rect: ColorRect = $GlobalUI/ColorRect
-@onready var score: Label = $GlobalUI/Control/Score
+#@onready var lvl_intensity: Label = $GlobalUI/Control/LvlIntensity
+#@onready var lives: Label = $GlobalUI/Control/Lives
+#@onready var color_rect: ColorRect = $GlobalUI/ColorRect
+#@onready var score: Label = $GlobalUI/Control/Score
+#@onready var lvl_intensity: Label = $LvlIntensity
+#@onready var lives: Label = $Lives
+#@onready var score: Label = $Score
+#@onready var color_rect: ColorRect = $ColorRect
+@onready var lvl_intensity: Label = $LvlIntensity
+@onready var lives: Label = $Lives
+@onready var score: Label = $Score
+@onready var color_rect: ColorRect = $ColorRect
 
 func set_lvl_intensity(amount : float): lvl_intensity.text = "Current Level Intensity: " + str(amount)
 func set_lives(amount : int): lives.text = 'Lives: ' + str(amount)

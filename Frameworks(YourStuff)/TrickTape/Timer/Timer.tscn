@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cllha1cynus8d"]
+
+[ext_resource type="Script" uid="uid://bnhjdtuweuh22" path="res://Frameworks(YourStuff)/TrickTape/Timer/timer.gd" id="1_6ihu3"]
+[ext_resource type="Texture2D" uid="uid://2a5p1uos24po" path="res://Frameworks(YourStuff)/TrickTape/Timer/Assets/2026_02_13_003_Kleki.png" id="2_w6vf6"]
+[ext_resource type="Script" uid="uid://bwydkj0qna4sg" path="res://Frameworks(YourStuff)/TrickTape/Timer/timer_progress.gd" id="3_3k44h"]
+[ext_resource type="Texture2D" uid="uid://cv1uh2n088344" path="res://Frameworks(YourStuff)/TrickTape/Timer/Assets/2026_02_13_002_Kleki.png" id="4_gdk6k"]
+[ext_resource type="Texture2D" uid="uid://ktkv1ag7by55" path="res://Frameworks(YourStuff)/TrickTape/Timer/Assets/2026_02_12_13n_Kleki.png" id="5_w6vf6"]
+
+[node name="ProgressBar" type="TextureProgressBar" unique_id=1334387193]
+offset_left = 1021.0
+offset_top = 553.0
+offset_right = 1170.2556
+offset_bottom = 686.0
+scale = Vector2(0.33211544, 0.33211544)
+max_value = 20.0
+step = 0.001
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = ExtResource("2_w6vf6")
+texture_progress = ExtResource("4_gdk6k")
+script = ExtResource("3_3k44h")
+
+[node name="Timer" type="Timer" parent="." unique_id=974358838]
+wait_time = 20.0
+script = ExtResource("1_6ihu3")
+
+[node name="2026021213nKleki" type="Sprite2D" parent="." unique_id=673961774]
+position = Vector2(75, -84.99994)
+scale = Vector2(24.999998, 24.999998)
+texture = ExtResource("5_w6vf6")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

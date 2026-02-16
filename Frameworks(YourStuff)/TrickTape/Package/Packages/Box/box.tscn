@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bf8owuegxjcly"]
+
+[ext_resource type="Script" uid="uid://c2817ddd6f075" path="res://Frameworks(YourStuff)/TrickTape/Package/package.gd" id="1_8exrl"]
+[ext_resource type="Texture2D" uid="uid://cmc7qb8p8ab3d" path="res://Frameworks(YourStuff)/TrickTape/Package/Packages/Box/boxpackage.png" id="1_r2b3v"]
+[ext_resource type="ArrayMesh" uid="uid://b7kn1bnl1tsmo" path="res://Frameworks(YourStuff)/TrickTape/Package/Packages/Box/package.obj" id="2_8exrl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30f07"]
+albedo_texture = ExtResource("1_r2b3v")
+texture_filter = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_30f07"]
+points = PackedVector3Array(-0.37364212, -0.3125, -0.43478355, 0.37356737, 0.3125, 0.43469656, 0.36003494, 0.3125, 0.43469656, 0.37364212, -0.3125, 0.43478355, 0.37356737, 0.3125, -0.43469656, -0.37364054, 0.3125, 0.4347817, -0.37364212, -0.3125, 0.43478355, 0.37364212, -0.3125, -0.43478355, -0.37364054, 0.3125, -0.4347817)
+
+[node name="Box" type="RigidBody3D" unique_id=615890476]
+process_mode = 3
+disable_mode = 2
+script = ExtResource("1_8exrl")
+
+[node name="Package" type="MeshInstance3D" parent="." unique_id=1045256353]
+material_override = SubResource("StandardMaterial3D_30f07")
+mesh = ExtResource("2_8exrl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2099480852]
+shape = SubResource("ConvexPolygonShape3D_30f07")

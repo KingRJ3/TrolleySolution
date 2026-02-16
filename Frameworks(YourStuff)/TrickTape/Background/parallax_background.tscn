@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cn4d1ulss6go1"]
+
+[ext_resource type="Script" uid="uid://rq4bjujmdftk" path="res://Frameworks(YourStuff)/TrickTape/Background/parallax_background.gd" id="1_ulxvv"]
+[ext_resource type="Texture2D" uid="uid://b5sq2eledml70" path="res://Frameworks(YourStuff)/TrickTape/Background/Assets/Warioware background.png" id="2_c1hfi"]
+[ext_resource type="Texture2D" uid="uid://bhjdwedq2b318" path="res://Frameworks(YourStuff)/TrickTape/Background/Assets/evil_background.png" id="2_ulxvv"]
+
+[node name="ParallaxBackground" type="Parallax2D" unique_id=1583370283]
+z_index = -20
+repeat_size = Vector2(515, 480)
+autoscroll = Vector2(-40, 0)
+repeat_times = 4
+script = ExtResource("1_ulxvv")
+
+[node name="GoodBackground" type="Sprite2D" parent="." unique_id=767060244]
+scale = Vector2(5, 5)
+texture = ExtResource("2_c1hfi")
+
+[node name="EvilBackground" type="Sprite2D" parent="." unique_id=279754384]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("2_ulxvv")

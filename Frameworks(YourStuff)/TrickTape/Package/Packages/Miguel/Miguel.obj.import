@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b4kretndepl6x"
+path="res://.godot/imported/Miguel.obj-090a2a87b81eee4914db2e543b0941db.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Miguel.obj-090a2a87b81eee4914db2e543b0941db.mesh"]
+
+source_file="res://Frameworks(YourStuff)/TrickTape/Package/Packages/Miguel/Miguel.obj"
+dest_files=["res://.godot/imported/Miguel.obj-090a2a87b81eee4914db2e543b0941db.mesh", "res://.godot/imported/Miguel.obj-090a2a87b81eee4914db2e543b0941db.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

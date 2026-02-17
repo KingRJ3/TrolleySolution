@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://c4vbajirj1ay5"]
+
+[ext_resource type="Script" uid="uid://gh0tw5gplkyp" path="res://Frameworks(YourStuff)/rock-skpping/ROCK.gd" id="1_io2xr"]
+[ext_resource type="Texture2D" uid="uid://cnpkyomhopatt" path="res://Frameworks(YourStuff)/rock-skpping/sprite/Mountains3.png" id="1_kllbg"]
+[ext_resource type="Script" uid="uid://bmrej2hhvtmco" path="res://Frameworks(YourStuff)/rock-skpping/main.gd" id="1_s5k8i"]
+[ext_resource type="Texture2D" uid="uid://cts6q8n8eko6s" path="res://Frameworks(YourStuff)/rock-skpping/sprite/Water1.png" id="2_7w4eo"]
+[ext_resource type="Texture2D" uid="uid://bo2yk5ve4qyra" path="res://Frameworks(YourStuff)/rock-skpping/sprite/Water2.png" id="3_2op23"]
+[ext_resource type="Texture2D" uid="uid://708ckotn37l" path="res://Frameworks(YourStuff)/rock-skpping/sprite/Redrock.png" id="3_o2w0t"]
+[ext_resource type="Texture2D" uid="uid://drrqho5xjpjs" path="res://Frameworks(YourStuff)/rock-skpping/sprite/Water3.png" id="4_kllbg"]
+[ext_resource type="Texture2D" uid="uid://dyc7o1q6jcnhq" path="res://Frameworks(YourStuff)/rock-skpping/sprite/RockShadow.png" id="4_o2w0t"]
+[ext_resource type="Texture2D" uid="uid://cx0rj3k8o4s7q" path="res://Frameworks(YourStuff)/rock-skpping/sprite/Water4.png" id="5_agafr"]
+[ext_resource type="AudioStream" uid="uid://cyurkcea6o5qe" path="res://Frameworks(YourStuff)/rock-skpping/sprite/explosion.wav" id="8_agafr"]
+[ext_resource type="AudioStream" uid="uid://bfisarvhlmvtp" path="res://Frameworks(YourStuff)/rock-skpping/sprite/WindyNO_STATIC.wav" id="10_f40dj"]
+[ext_resource type="AudioStream" uid="uid://cl1k8ckbj2sot" path="res://Frameworks(YourStuff)/rock-skpping/sprite/tune2.wav" id="11_6wk24"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_77prf"]
+bounce = 0.85
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_io2xr"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f40dj"]
+random_pitch = 1.1411592
+random_volume_offset_db = 1.7
+streams_count = 1
+stream_0/stream = ExtResource("8_agafr")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_io2xr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2w0t"]
+size = Vector2(3571.75, 182.25)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6wk24"]
+random_pitch = 1.0439723
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("10_f40dj")
+
+[node name="WWGame" type="Node2D" unique_id=618096148]
+script = ExtResource("1_s5k8i")
+
+[node name="Trees+Sky+Mountains" type="Parallax2D" parent="." unique_id=528855935]
+scroll_offset = Vector2(-227, 192)
+repeat_size = Vector2(1074, 0)
+autoscroll = Vector2(-20, 0)
+repeat_times = 10
+
+[node name="Background" type="Sprite2D" parent="Trees+Sky+Mountains" unique_id=1848164950]
+position = Vector2(765, 9.000008)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_kllbg")
+
+[node name="Water1" type="Parallax2D" parent="." unique_id=1415648411]
+scroll_offset = Vector2(-394, 522)
+repeat_size = Vector2(740, 0)
+autoscroll = Vector2(-30, 0)
+repeat_times = 10
+
+[node name="Background" type="Sprite2D" parent="Water1" unique_id=1407178196]
+position = Vector2(781, -107.75)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_7w4eo")
+
+[node name="Water2" type="Parallax2D" parent="." unique_id=1297038615]
+scroll_offset = Vector2(-394, 491.25)
+repeat_size = Vector2(750, 0)
+autoscroll = Vector2(-60, 0)
+repeat_times = 10
+
+[node name="Background" type="Sprite2D" parent="Water2" unique_id=496804603]
+position = Vector2(781, -47)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_2op23")
+
+[node name="Water3" type="Parallax2D" parent="." unique_id=246452891]
+scroll_offset = Vector2(-394, 491.25)
+repeat_size = Vector2(700, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 10
+
+[node name="Background" type="Sprite2D" parent="Water3" unique_id=1286857468]
+position = Vector2(781, -6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_kllbg")
+
+[node name="Water4" type="Parallax2D" parent="." unique_id=1617217500]
+scroll_offset = Vector2(-394, 491.25)
+repeat_size = Vector2(719, 0)
+autoscroll = Vector2(-160, 0)
+repeat_times = 10
+
+[node name="Background" type="Sprite2D" parent="Water4" unique_id=1597640361]
+position = Vector2(784, 97.75)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_agafr")
+
+[node name="ROCK" type="RigidBody2D" parent="." unique_id=1114939820]
+top_level = true
+position = Vector2(316, 242)
+physics_material_override = SubResource("PhysicsMaterial_77prf")
+linear_velocity = Vector2(0, 30)
+linear_damp_mode = 1
+constant_force = Vector2(0, 9.8)
+script = ExtResource("1_io2xr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ROCK" unique_id=1710220230]
+scale = Vector2(2, 1.5)
+shape = SubResource("CircleShape2D_io2xr")
+
+[node name="Sprite2D" type="Sprite2D" parent="ROCK" unique_id=834499183]
+visibility_layer = 15
+scale = Vector2(2, 2)
+texture = ExtResource("3_o2w0t")
+
+[node name="Timer" type="Timer" parent="ROCK" unique_id=2049529781]
+wait_time = 0.15
+autostart = true
+
+[node name="Splash" type="AudioStreamPlayer" parent="ROCK" unique_id=355416431]
+stream = SubResource("AudioStreamRandomizer_f40dj")
+volume_db = -3.0
+pitch_scale = 3.02
+
+[node name="Area2D" type="Area2D" parent="." unique_id=346743414]
+visible = false
+position = Vector2(316, 587)
+scale = Vector2(29, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=161220598]
+shape = SubResource("RectangleShape2D_io2xr")
+
+[node name="badWater" type="Area2D" parent="." unique_id=81583495]
+position = Vector2(316, 621)
+scale = Vector2(1, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="badWater" unique_id=679402237]
+visible = false
+shape = SubResource("RectangleShape2D_io2xr")
+
+[node name="Shadow" type="Sprite2D" parent="badWater" unique_id=111682047]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_o2w0t")
+
+[node name="Wawer" type="StaticBody2D" parent="." unique_id=1104488067]
+visible = false
+position = Vector2(1929.5, 745.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wawer" unique_id=2064567008]
+position = Vector2(-1398.5, -30.75)
+shape = SubResource("RectangleShape2D_o2w0t")
+
+[node name="Controls" type="RichTextLabel" parent="." unique_id=2067096445]
+offset_left = 330.0
+offset_top = 33.0
+offset_right = 550.0
+offset_bottom = 79.0
+scale = Vector2(2, 2)
+text = "Press Space to Skip the rock
+when it hits the water!     >:)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Wind" type="AudioStreamPlayer" parent="." unique_id=1464858174]
+stream = SubResource("AudioStreamRandomizer_6wk24")
+volume_db = -80.0
+pitch_scale = 0.83
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1768179424]
+stream = ExtResource("11_6wk24")
+volume_db = -80.0
+autoplay = true
+
+[connection signal="timeout" from="ROCK/Timer" to="ROCK" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="ROCK" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="ROCK" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="badWater" to="ROCK" method="_on_bad_water_body_entered"]

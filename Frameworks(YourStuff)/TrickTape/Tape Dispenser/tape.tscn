@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://3l6601abffpf"]
+
+[ext_resource type="Texture2D" uid="uid://dtj6jcp5wfkd8" path="res://Frameworks(YourStuff)/TrickTape/Tape Dispenser/Assets/tape_decal.png" id="1_5hw1b"]
+
+[node name="Tape" type="Decal" unique_id=1039016639]
+size = Vector3(2, 0.2, 1)
+texture_albedo = ExtResource("1_5hw1b")
+upper_fade = 0.0
+lower_fade = 0.0
+distance_fade_begin = 2.0
+distance_fade_length = 1.0
+cull_mask = 524289

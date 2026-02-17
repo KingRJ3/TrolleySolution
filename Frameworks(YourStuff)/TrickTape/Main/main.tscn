@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ekvt1amehlo"]
+
+[ext_resource type="Script" uid="uid://csb4nk17rdv1n" path="res://Frameworks(YourStuff)/TrickTape/Main/main.gd" id="1_k3v36"]
+[ext_resource type="PackedScene" uid="uid://byw16m8d51wrn" path="res://Frameworks(YourStuff)/TrickTape/Package Spinner/spinner.tscn" id="1_yh5la"]
+[ext_resource type="PackedScene" uid="uid://d2owqylhcsx4k" path="res://Frameworks(YourStuff)/TrickTape/Coverage Bar/CoverageBar.tscn" id="4_eunhr"]
+[ext_resource type="PackedScene" uid="uid://bwv3l5cugrxkf" path="res://Frameworks(YourStuff)/TrickTape/Tape Dispenser/TapeDispenserPositioner.tscn" id="6_ib3t1"]
+[ext_resource type="PackedScene" uid="uid://cllha1cynus8d" path="res://Frameworks(YourStuff)/TrickTape/Timer/Timer.tscn" id="6_liyct"]
+
+[sub_resource type="Environment" id="Environment_k3v36"]
+background_mode = 1
+background_color = Color(0.976394, 0.55466217, 0.7242531, 1)
+
+[node name="Main" type="Node3D" unique_id=2065298038]
+script = ExtResource("1_k3v36")
+
+[node name="Spinner" parent="." unique_id=1415344120 node_paths=PackedStringArray("tape_dispenser") instance=ExtResource("1_yh5la")]
+tape_dispenser = NodePath("../TapeDispenserPositioner/Left/TapeDispenser")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=481585423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.063638, 0.9595504)
+light_energy = 2.114
+light_size = 0.323
+
+[node name="CoverageBar" parent="." unique_id=1594946723 instance=ExtResource("4_eunhr")]
+
+[node name="Timer" parent="." unique_id=2120766430 instance=ExtResource("6_liyct")]
+
+[node name="TapeDispenserPositioner" parent="." unique_id=1603529063 instance=ExtResource("6_ib3t1")]
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=248730204]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.024255037, 1.798465)
+light_energy = 2.114
+light_size = 0.323
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1717800918]
+environment = SubResource("Environment_k3v36")
+
+[editable path="TapeDispenserPositioner"]
+[editable path="TapeDispenserPositioner/VisualsContainer/Up"]
+[editable path="TapeDispenserPositioner/VisualsContainer/Down"]

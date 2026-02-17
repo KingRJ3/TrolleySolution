@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bwv3l5cugrxkf"]
+
+[ext_resource type="Script" uid="uid://cieng3rbx4bf4" path="res://Frameworks(YourStuff)/TrickTape/Tape Dispenser/tape_dispenser_positioner.gd" id="1_7c4af"]
+[ext_resource type="PackedScene" uid="uid://c280qqcd8o0j2" path="res://Frameworks(YourStuff)/TrickTape/Tape Dispenser/tape_dispenser.tscn" id="1_v4nkt"]
+[ext_resource type="PackedScene" uid="uid://ci4bfjktm2if8" path="res://Frameworks(YourStuff)/TrickTape/Tape Dispenser/visual_dispenser.tscn" id="3_mrtnv"]
+[ext_resource type="Texture2D" uid="uid://b1q7hybpqa6i7" path="res://Frameworks(YourStuff)/TrickTape/Tape Dispenser/Assets/arrow.png" id="4_avj7t"]
+
+[sub_resource type="Animation" id="Animation_avj7t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrow:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1budj"]
+resource_name = "arrow_fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrow:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.53333336, 1.5, 2),
+"transitions": PackedFloat32Array(3.1383367, 2.9281719, 0.23325822, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_on5tc"]
+_data = {
+&"RESET": SubResource("Animation_avj7t"),
+&"arrow_fade": SubResource("Animation_1budj")
+}
+
+[node name="TapeDispenserPositioner" type="Node3D" unique_id=1603529063 node_paths=PackedStringArray("tape_dispenser")]
+script = ExtResource("1_7c4af")
+tape_dispenser = NodePath("Left/TapeDispenser")
+
+[node name="Left" type="Marker3D" parent="." unique_id=1041362808]
+transform = Transform3D(-0.72683835, 0, -0.68680847, 0, 1, 0, 0.68680847, 0, -0.72683835, -0.5843027, 0, 0.5734029)
+
+[node name="TapeDispenser" parent="Left" unique_id=100595719 instance=ExtResource("1_v4nkt")]
+
+[node name="Right" type="Marker3D" parent="." unique_id=1922111938]
+transform = Transform3D(0.79828876, 0, -0.60227495, 0, 1, 0, 0.60227495, 0, 0.79828876, 0.520829, 0, 0.5656295)
+
+[node name="Up" type="Marker3D" parent="." unique_id=62026874]
+transform = Transform3D(0.013410717, 0.99988717, 0.006767457, 0.7977433, -0.014779599, 0.6028161, 0.6028481, -0.0026855846, -0.79785144, 0, 0.45275575, 0.58211315)
+
+[node name="Down" type="Marker3D" parent="." unique_id=14351774]
+transform = Transform3D(0.03971657, -0.9987294, 0.031024355, -0.7530105, -0.05032531, -0.6560813, 0.6568089, 0.0026955828, -0.7540524, 0, -0.5665971, 0.5641581)
+
+[node name="VisualsContainer" type="Node" parent="." unique_id=178606531]
+
+[node name="Right" parent="VisualsContainer" unique_id=1690649860 instance=ExtResource("3_mrtnv")]
+transform = Transform3D(1.755, 0, 0, 0, 1.755, 0, 0, 0, 1.755, 1.965453, 0, 0)
+visible = false
+
+[node name="Left" parent="VisualsContainer" unique_id=19492777 instance=ExtResource("3_mrtnv")]
+transform = Transform3D(-1.755, 0, 2.6499762e-07, 0, 1.755, 0, -2.6499762e-07, 0, -1.755, -2.070964, 0, 0)
+visible = false
+
+[node name="Up" parent="VisualsContainer" unique_id=1931268089 instance=ExtResource("3_mrtnv")]
+transform = Transform3D(-7.6713484e-08, -1.755, 0, 1.755, -7.6713484e-08, 0, 0, 0, 1.755, 0, 1.2973908, 0)
+visible = false
+
+[node name="tape" parent="VisualsContainer/Up" index="0" unique_id=1959950636]
+transform = Transform3D(0.70500004, -1.4210855e-14, 0, 7.1054274e-15, 1.0000001, 0, 0, 0, 1.0000001, -0.4181356, -8.300635e-09, 0)
+
+[node name="Down" parent="VisualsContainer" unique_id=1338742183 instance=ExtResource("3_mrtnv")]
+transform = Transform3D(-7.6713484e-08, 1.755, 0, -1.755, -7.6713484e-08, 0, 0, 0, 1.755, 0, -1.0696932, 0)
+
+[node name="tape" parent="VisualsContainer/Down" index="0" unique_id=1959950636]
+transform = Transform3D(0.50500005, 3.5527137e-15, 0, -3.5527137e-15, 1.0000001, 0, 0, 0, 1.0000001, -0.34079063, 1.16814896e-08, 0)
+
+[node name="Arrow" type="Sprite3D" parent="." unique_id=1549704859]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0.572825)
+layers = 2
+modulate = Color(1, 1, 1, 0)
+texture_filter = 0
+texture = ExtResource("4_avj7t")
+
+[node name="arrow_fade_player" type="AnimationPlayer" parent="." unique_id=310632937]
+libraries/ = SubResource("AnimationLibrary_on5tc")
+
+[editable path="VisualsContainer/Up"]
+[editable path="VisualsContainer/Down"]

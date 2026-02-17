@@ -1,4 +1,4 @@
-extends Node2D
+extends Game
 
 @onready var Description: RichTextLabel = $Description
 @onready var timer_words: RichTextLabel = $TimerWords
@@ -14,7 +14,7 @@ var started = false
 
 var color_chosen : Color
 
-func _ready() -> void:
+func _start_game() -> void:
 	started = true
 	Description.show()
 	
@@ -27,8 +27,9 @@ func _ready() -> void:
 	
 	started = true
 
-	timer = 10
+	timer = 10/get_intensity()
 	await time_done
+	emit_signal("end_game", won)
 	print('game finished')
 
 func _process(delta: float) -> void:

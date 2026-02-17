@@ -39,8 +39,9 @@ func _on_timer_timeout() -> void:
 		var yp = YELLOWSPRAYPOINT.instantiate()
 		add_child(yp)
 		
-		if yp and player.give_spray():
-			yp.global_position = player.give_spray()
-			#yp.global_transform.basis.x = player.give_normal()
+		if player != null:
+			if yp and player.give_spray():
+				yp.global_position = player.give_spray()
+				#yp.global_transform.basis.x = player.give_normal()
 			
 	can_paint = false

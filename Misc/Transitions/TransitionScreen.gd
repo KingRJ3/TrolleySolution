@@ -28,6 +28,5 @@ func set_new_scene_to_move(game: Game): #instantiate and set position of new sce
 	add_child.call_deferred(new_scene_to_move)
 	new_scene_to_move.global_position.y += 2000 #move it out of here
 	await new_scene_to_move.tree_exited
-	
 	queue_free() #clears the subviewport when done
 	

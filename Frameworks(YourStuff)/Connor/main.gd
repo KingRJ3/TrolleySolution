@@ -7,7 +7,7 @@ const sounds := [
 	preload("res://Frameworks(YourStuff)/Connor/assets/dragon-studio-crowd-cheer-and-applause-406644.mp3")
 ]
 
-var winstate: bool = true
+var winning: bool = true
 var gtimer: Timer
 
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +26,7 @@ func _start_game():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#if !winstate:
+	#if !winning:
 		#$"game status".color = Color(1, 0, 0)
 		#$"Status text".text = "LOSING!"
 	
@@ -34,16 +34,17 @@ func _process(delta: float) -> void:
 	return
 
 func _on_game_timer_timeout() -> void:
-	$"Sound Emitter".stream = sounds[2]
-	$"Sound Emitter".play()
-	end_game.emit(winstate)
+	if winning:
+		$"Sound Emitter".stream = sounds[2]
+		$"Sound Emitter".play()
+	end_game.emit(winning)
 
 func _on_tennis_ball_launcher_launched_ball(ball: TennisBall) -> void:
 	# lambdas are fucking awesome
 	ball.body_entered.connect(
 		func(body: Node) -> void:
-			if body == $Tyson && winstate:
-				winstate = false
+			if body == $Tyson && winning:
+				winning = false
 				$Tyson.die()
 				$"Sound Emitter".stream = sounds[1]
 				$"Sound Emitter".play()

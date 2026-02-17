@@ -8,6 +8,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_nmg0t"]
 font_size = 50
 
+[sub_resource type="LabelSettings" id="LabelSettings_h7kk7"]
+font_size = 50
+
 [node name="Main" type="Node2D" unique_id=1991793190]
 script = ExtResource("1_qlpjk")
 metadata/_custom_type_script = "uid://d28a1gihixqie"
@@ -27,6 +30,7 @@ texture = ExtResource("4_nmg0t")
 metadata/_edit_lock_ = true
 
 [node name="Game Timer" type="Timer" parent="." unique_id=1897668822]
+one_shot = true
 
 [node name="game status" type="ColorRect" parent="." unique_id=1556006993]
 custom_minimum_size = Vector2(500, 150)
@@ -37,12 +41,22 @@ offset_bottom = 247.0
 color = Color(0, 1, 0, 1)
 
 [node name="Status text" type="Label" parent="." unique_id=1617149685]
-offset_left = 657.0
-offset_top = 105.0
-offset_right = 984.0
-offset_bottom = 188.0
+offset_left = 659.0
+offset_top = 66.0
+offset_right = 986.0
+offset_bottom = 149.0
 text = "WINNING!"
 label_settings = SubResource("LabelSettings_nmg0t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="timertext" type="Label" parent="." unique_id=1558302097]
+offset_left = 660.0
+offset_top = 151.0
+offset_right = 981.0
+offset_bottom = 220.0
+text = "SAMPLE TEXT"
+label_settings = SubResource("LabelSettings_h7kk7")
 horizontal_alignment = 1
 vertical_alignment = 1
 

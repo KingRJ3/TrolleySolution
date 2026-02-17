@@ -20,10 +20,12 @@ func _process(delta: float) -> void:
 	if !winstate:
 		$"game status".color = Color(1, 0, 0)
 		$"Status text".text = "LOSING!"
-	pass
+	
+	$timertext.text = "%0.2f" % $"Game Timer".time_left
+	return
 
 func _on_game_timer_timeout() -> void:
-	emit_signal("end_game", winstate)
+	end_game.emit(winstate)
 
 func _on_tennis_ball_launcher_launched_ball(ball: TennisBall) -> void:
 	# lambdas are fucking awesome

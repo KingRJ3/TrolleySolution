@@ -18,7 +18,7 @@ func _setup(inten: float) -> void:
 	self.is_setup = true
 	
 	timer = $"Launch Timer"
-	timer.wait_time = 0.75 / self.intensity
+	timer.wait_time = 1 / self.intensity
 	timer.start()
 	
 	return
@@ -32,10 +32,9 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_launch_timer_timeout() -> void:
-	assert(self.is_setup, "<TennisBallLauncher::_on_launch_timer_timeout> Error: Object has not been setup with the _setup() function")
+	assert(self.is_setup, "<TennisBallLauncher::_on_launch_timer_timeout> Error: Object has not been set up with TennisBallLauncher::_setup")
 	var tennis_ball: TennisBall = tb_scene.instantiate()
 	
-	# TODO: check to see that this vector decomp is correct
 	var theta: float = deg_to_rad(randf_range(tb_angle - (tb_angle/2), tb_angle + (tb_angle/2)))
 	var xspeed: float = -1 * tennis_ball.base_speed * intensity * cos(theta)
 	var yspeed: float = -1 * tennis_ball.base_speed * intensity * sin(theta)

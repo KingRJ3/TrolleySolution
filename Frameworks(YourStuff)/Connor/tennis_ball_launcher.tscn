@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d0jmc8km4re78"]
 
-[ext_resource type="Script" uid="uid://sscxyji4mrct" path="res://tennis_ball_launcher.gd" id="1_sraha"]
+[ext_resource type="Script" uid="uid://sscxyji4mrct" path="res://Frameworks(YourStuff)/Connor/tennis_ball_launcher.gd" id="1_sraha"]
 [ext_resource type="PackedScene" uid="uid://how4ldnve1vp" path="res://Frameworks(YourStuff)/Connor/tennis_ball.tscn" id="2_hp028"]
 [ext_resource type="Texture2D" uid="uid://qfj8r4e3gvlv" path="res://Frameworks(YourStuff)/Connor/art/tblauncher.png" id="3_hp028"]
 

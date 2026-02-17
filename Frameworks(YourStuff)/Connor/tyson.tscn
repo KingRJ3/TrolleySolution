@@ -19,21 +19,18 @@ size = Vector2(135.5, 671)
 size = Vector2(196.29633, 17.60234)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cwa4r"]
-radius = 31.304878
+radius = 42.0
 height = 140.43323
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jwoe7"]
-radius = 28.44989
+radius = 42.0
 height = 150.53735
 
 [node name="Tyson" type="Node2D" unique_id=460236819]
 script = ExtResource("1_yxrwa")
-base_punch_timer = null
-intensity = null
 metadata/_edit_lock_ = true
 
 [node name="Head" type="Sprite2D" parent="." unique_id=1253943465]
-visible = false
 z_index = 1
 position = Vector2(13.999999, -127)
 scale = Vector2(0.86, 1)
@@ -47,7 +44,6 @@ position = Vector2(-5.25, 105.5)
 shape = SubResource("RectangleShape2D_qlpjk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Body" unique_id=697845464]
-visible = false
 position = Vector2(-0.92309165, 75)
 rotation = 3.1415927
 scale = Vector2(0.2017483, 0.4270581)
@@ -57,32 +53,16 @@ flip_v = true
 
 [node name="Left Arm" type="Node2D" parent="." unique_id=1300417985]
 
-[node name="Punch Timer" type="Timer" parent="Left Arm" unique_id=1836449167]
-one_shot = true
-
-[node name="Body-Fist Spring" type="DampedSpringJoint2D" parent="Left Arm" unique_id=985009735]
-position = Vector2(7, -98)
-rotation = 4.363323
-node_a = NodePath("../../Body")
-node_b = NodePath("../Left Rear Arm/Left Forearm/Left Fist")
-bias = 0.9
-length = 240.0
-rest_length = 240.0
-stiffness = 64.0
-damping = 16.0
-
 [node name="Left Rear Arm" type="RigidBody2D" parent="Left Arm" unique_id=992388163]
-collision_layer = 0
 collision_mask = 0
+gravity_scale = 0.0
 
 [node name="Left Arm Connector" type="PinJoint2D" parent="Left Arm/Left Rear Arm" unique_id=1544064188]
 position = Vector2(7, -97)
 node_a = NodePath("../../../Body")
 node_b = NodePath("..")
-angular_limit_enabled = true
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
-motor_enabled = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="Left Arm/Left Rear Arm" unique_id=1191272705]
 position = Vector2(85, -54.000015)
@@ -90,24 +70,21 @@ rotation = 0.50265485
 shape = SubResource("RectangleShape2D_0tfjl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Left Arm/Left Rear Arm" unique_id=1286125258]
-visible = false
 position = Vector2(81.00001, -50.999992)
 rotation = 0.27401668
 scale = Vector2(0.9188681, 0.78588694)
 texture = ExtResource("2_ewf7b")
 
 [node name="Left Forearm" type="RigidBody2D" parent="Left Arm/Left Rear Arm" unique_id=1560133300]
-collision_layer = 0
 collision_mask = 0
+gravity_scale = 0.0
 
 [node name="Intra-Left Arm Connector" type="PinJoint2D" parent="Left Arm/Left Rear Arm/Left Forearm" unique_id=1683090964]
 position = Vector2(163, -11)
 node_a = NodePath("../..")
 node_b = NodePath("..")
-angular_limit_enabled = true
 angular_limit_lower = -1.5707964
 angular_limit_upper = 1.5707964
-motor_enabled = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="Left Arm/Left Rear Arm/Left Forearm" unique_id=449550277]
 position = Vector2(196.00003, -92.000015)
@@ -115,7 +92,6 @@ rotation = -1.1728612
 shape = SubResource("RectangleShape2D_0tfjl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Left Arm/Left Rear Arm/Left Forearm" unique_id=1259289035]
-visible = false
 position = Vector2(201.00003, -100.999985)
 rotation = -1.0524335
 scale = Vector2(1.292942, 0.8421308)
@@ -123,6 +99,8 @@ texture = ExtResource("3_uwr0c")
 
 [node name="Left Fist" type="RigidBody2D" parent="Left Arm/Left Rear Arm/Left Forearm" unique_id=650783497]
 z_index = 1
+collision_mask = 0
+gravity_scale = 0.0
 script = ExtResource("6_l1t3y")
 metadata/_custom_type_script = "uid://3d2vjt81rly5"
 
@@ -130,10 +108,8 @@ metadata/_custom_type_script = "uid://3d2vjt81rly5"
 position = Vector2(233, -179)
 node_a = NodePath("../..")
 node_b = NodePath("..")
-angular_limit_enabled = true
 angular_limit_lower = 0.34906584
 angular_limit_upper = 0.34906584
-motor_enabled = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="Left Arm/Left Rear Arm/Left Forearm/Left Fist" unique_id=1246207519]
 position = Vector2(261, -238)
@@ -142,7 +118,6 @@ scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("CapsuleShape2D_cwa4r")
 
 [node name="Glove" type="Sprite2D" parent="Left Arm/Left Rear Arm/Left Forearm/Left Fist" unique_id=1325635191]
-visible = false
 position = Vector2(256.99997, -241.99998)
 rotation = -0.668461
 scale = Vector2(1.049293, 0.9610428)
@@ -151,24 +126,10 @@ texture = ExtResource("4_ov7jn")
 [node name="Right Arm" type="Node2D" parent="." unique_id=494331189]
 z_index = 2
 
-[node name="Punch Timer" type="Timer" parent="Right Arm" unique_id=2119811557]
-one_shot = true
-
-[node name="Body-Fist Spring" type="DampedSpringJoint2D" parent="Right Arm" unique_id=198865668]
-position = Vector2(-11, -59)
-rotation = -1.7366027
-node_a = NodePath("../../Body")
-node_b = NodePath("../Right Rear Arm/Right Forearm/Right Fist")
-bias = 0.9
-length = 182.0
-rest_length = 182.0
-stiffness = 64.0
-damping = 16.0
-
 [node name="Right Rear Arm" type="RigidBody2D" parent="Right Arm" unique_id=1759357202]
 z_index = 1
-collision_layer = 0
 collision_mask = 0
+gravity_scale = 0.0
 
 [node name="Right Arm Connector" type="PinJoint2D" parent="Right Arm/Right Rear Arm" unique_id=1414252269]
 position = Vector2(-11, -59)
@@ -181,7 +142,6 @@ rotation = 0.9215338
 shape = SubResource("RectangleShape2D_0tfjl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Right Arm/Right Rear Arm" unique_id=1892939538]
-visible = false
 position = Vector2(43, 11.000002)
 rotation = -0.8045968
 scale = Vector2(0.5, 0.7319636)
@@ -189,8 +149,8 @@ texture = ExtResource("2_djko1")
 
 [node name="Right Forearm" type="RigidBody2D" parent="Right Arm/Right Rear Arm" unique_id=976928141]
 z_index = 1
-collision_layer = 0
 collision_mask = 0
+gravity_scale = 0.0
 
 [node name="Intra-Right Arm Connector" type="PinJoint2D" parent="Right Arm/Right Rear Arm/Right Forearm" unique_id=1345529622]
 position = Vector2(97, 83)
@@ -203,7 +163,6 @@ rotation = -1.1728612
 shape = SubResource("RectangleShape2D_0tfjl")
 
 [node name="Sprite2D" type="Sprite2D" parent="Right Arm/Right Rear Arm/Right Forearm" unique_id=1399474136]
-visible = false
 position = Vector2(117.24949, 4.7574663)
 rotation = -1.394518
 scale = Vector2(0.78989464, 0.53332615)
@@ -211,6 +170,8 @@ texture = ExtResource("3_atjw6")
 
 [node name="Right Fist" type="RigidBody2D" parent="Right Arm/Right Rear Arm/Right Forearm" unique_id=198750575]
 z_index = 1
+collision_mask = 0
+gravity_scale = 0.0
 script = ExtResource("6_l1t3y")
 metadata/_custom_type_script = "uid://3d2vjt81rly5"
 
@@ -225,14 +186,12 @@ rotation = -2.7925267
 shape = SubResource("CapsuleShape2D_jwoe7")
 
 [node name="Glove" type="Sprite2D" parent="Right Arm/Right Rear Arm/Right Forearm/Right Fist" unique_id=1506042556]
-visible = false
 position = Vector2(174, -146)
 rotation = -1.3962634
 scale = Vector2(0.49999997, 0.49999997)
 texture = ExtResource("4_atjw6")
 
 [node name="Legs" type="Sprite2D" parent="." unique_id=1538125860]
-visible = false
 z_index = 1
 position = Vector2(-27, 442)
 scale = Vector2(0.485, 1)

@@ -1,13 +1,17 @@
 class_name Fist
 extends RigidBody2D
 
-var to_apply: Vector2 = Vector2.ZERO
+@onready var to_apply: Array[Callable] = []
 
-func do_central_force(force: Vector2) -> void:
-	to_apply = force
+func queue_set_linear_velocity(linvel: Vector2) -> void:
+	to_apply.append(func(state: PhysicsDirectBodyState2D) -> void:
+		state.linear_velocity = linvel
+		return
+	)
+	return
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	state.linear_velocity = to_apply
-	to_apply = Vector2.ZERO
-	
+	for operation: Callable in to_apply:
+		operation.call(state)
+
 	return

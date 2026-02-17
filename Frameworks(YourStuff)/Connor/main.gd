@@ -1,27 +1,26 @@
 class_name ConnorWalstrom 
 extends Game
 
-var screen_size: Vector2 = Vector2.ZERO
 var winstate: bool = true
 var gtimer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _start_game():
+	$Tyson._setup(get_intensity())
 	gtimer = $"Game Timer"
-	screen_size = get_viewport_rect().size
-
 	gtimer.wait_time = 5 / get_intensity()
+	await get_tree().create_timer(gtimer.wait_time / 5).timeout
 	gtimer.start()
 	
 	$"Tennis Ball Launcher"._setup(get_intensity())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if !winstate:
-		$"game status".color = Color(1, 0, 0)
-		$"Status text".text = "LOSING!"
-	
-	$timertext.text = "%0.2f" % $"Game Timer".time_left
+	#if !winstate:
+		#$"game status".color = Color(1, 0, 0)
+		#$"Status text".text = "LOSING!"
+	#
+	#$timertext.text = "%0.2f" % $"Game Timer".time_left
 	return
 
 func _on_game_timer_timeout() -> void:

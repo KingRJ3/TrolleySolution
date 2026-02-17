@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5l5qwi8qvqys" path="res://Frameworks(YourStuff)/Connor/main.gd" id="1_qlpjk"]
 [ext_resource type="PackedScene" uid="uid://cxymrx6g58j1" path="res://Frameworks(YourStuff)/Connor/tyson.tscn" id="2_oahid"]
-[ext_resource type="PackedScene" uid="uid://d0jmc8km4re78" path="res://tennis_ball_launcher.tscn" id="3_0tfjl"]
+[ext_resource type="PackedScene" uid="uid://d0jmc8km4re78" path="res://Frameworks(YourStuff)/Connor/tennis_ball_launcher.tscn" id="3_0tfjl"]
 [ext_resource type="Texture2D" uid="uid://ct2om30l0e3f0" path="res://Frameworks(YourStuff)/Connor/art/boxing ring.png" id="4_nmg0t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nmg0t"]
@@ -33,6 +33,7 @@ metadata/_edit_lock_ = true
 one_shot = true
 
 [node name="game status" type="ColorRect" parent="." unique_id=1556006993]
+visible = false
 custom_minimum_size = Vector2(500, 150)
 offset_left = 583.0
 offset_top = 47.0
@@ -41,6 +42,7 @@ offset_bottom = 247.0
 color = Color(0, 1, 0, 1)
 
 [node name="Status text" type="Label" parent="." unique_id=1617149685]
+visible = false
 offset_left = 659.0
 offset_top = 66.0
 offset_right = 986.0
@@ -51,6 +53,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="timertext" type="Label" parent="." unique_id=1558302097]
+visible = false
 offset_left = 660.0
 offset_top = 151.0
 offset_right = 981.0

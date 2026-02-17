@@ -5,7 +5,11 @@ var switch_toggled : bool = false
 var win_con_up : int # ranges 0 to 1 (false or true)
 var can_click : bool = false
 
+signal start
+
 func _start_game():
+	passed_in_counter = 5 - get_intensity()
+	passed_in_counter = clamp(passed_in_counter, 1.2, 5)
 	win_con_up = randi_range(0,1)
 	if win_con_up: # makes more people on top, less on bottom
 		$TopVictims/AlivePerson.queue_free()
@@ -17,6 +21,7 @@ func _start_game():
 		$TopVictims/DeadGroup.queue_free()
 		$BottomVictims/AlivePerson.queue_free()
 		$BottomVictims/DeadPerson.queue_free()
+	start.emit()
 
 ## Called when the node enters the scene tree for the first time.
 #func _ready() -> void:

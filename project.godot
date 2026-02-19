@@ -15,6 +15,10 @@ run/main_scene="uid://n73cmic5pigu"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://csn2jbd74g3rq"
 
+[audio]
+
+buses/default_bus_layout="res://Frameworks(YourStuff)/Connor/default_bus_layout.tres"
+
 [autoload]
 
 Director="*uid://cwiuo8ouea0ln"

@@ -26,7 +26,6 @@ var off = false
 func add_amount(amount):
 	if off: return
 	progress_bar.value = amount
-	print(progress_bar.value, progress_bar.max_value)
 	position += Vector2.ONE * randf_range(-1,1)
 	progress_bar.modulate = Color.RED
 	

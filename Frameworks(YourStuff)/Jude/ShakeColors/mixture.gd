@@ -56,3 +56,14 @@ func interact_once():
 
 func get_mix():
 	return polygon_2d.color
+
+var color_time = .1
+func hover():
+	modulate = Color.YELLOW
+	color_time = .1
+	
+
+func _process(delta: float) -> void:
+	color_time -= delta
+	if color_time < 0:
+		modulate = Color.WHITE

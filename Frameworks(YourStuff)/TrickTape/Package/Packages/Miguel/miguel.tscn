@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b0daissj7v7do"]
+
+[ext_resource type="Script" uid="uid://c2817ddd6f075" path="res://Frameworks(YourStuff)/TrickTape/Package/package.gd" id="1_jet3a"]
+[ext_resource type="Texture2D" uid="uid://c341iyaadcgfb" path="res://Frameworks(YourStuff)/TrickTape/Package/Packages/Miguel/Miguel.png" id="2_xj5g2"]
+[ext_resource type="ArrayMesh" uid="uid://b4kretndepl6x" path="res://Frameworks(YourStuff)/TrickTape/Package/Packages/Miguel/Miguel.obj" id="3_vrruq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwrk4"]
+albedo_texture = ExtResource("2_xj5g2")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jet3a"]
+points = PackedVector3Array(-13.897867, 0.81349236, -3.7834065, -13.897867, 0.81349236, -4.021354, -13.640627, -5.551115e-17, -3.6001585, -15, 0.791501, -3.6017962, -13.659538, 0.0062054, -4.2, -16.119843, 0.21826573, -4.219841, -16.119843, 0.09925303, -3.862764, -14.998459, 0.7874457, -4.2, -15.099999, 0.021701789, -3.61669, -13.778789, 0.53557855, -4.219841, -13.778789, 0.53557855, -3.5850441, -15.099999, 0.021701789, -4.188195, -15.206988, 0.33744156, -3.5850441, -13.699237, 0.6150291, -4.021354, -16.119843, 0.21826573, -3.862764, -14.207568, 0.79385906, -3.6, -14.217946, 0.7874457, -4.2, -16.040462, 0.11785486, -4.2, -13.699237, 0.6150291, -3.7834065, -15.190167, 0.1132746, -3.6, -13.778789, 0.73412335, -4.021354, -13.778789, 0.73412335, -3.7834065, -13.7, 0.23511735, -4.1898866, -15.099593, 0.7, -3.6171544)
+
+[node name="Miguel" type="RigidBody3D" unique_id=1597781503]
+process_mode = 3
+disable_mode = 2
+script = ExtResource("1_jet3a")
+
+[node name="Miguel" type="MeshInstance3D" parent="." unique_id=346180268]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 8.886954, -0.123610735, 2.3556628)
+material_override = SubResource("StandardMaterial3D_uwrk4")
+mesh = ExtResource("3_vrruq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1451596912]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 8.886954, -0.123610735, 2.3556628)
+shape = SubResource("ConvexPolygonShape3D_jet3a")

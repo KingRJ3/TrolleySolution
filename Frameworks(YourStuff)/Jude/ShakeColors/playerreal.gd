@@ -16,7 +16,7 @@ var started = false
 
 func check_anim():
 	$Node2D/CheckPoint/AnimationPlayer.play("checkpoint")
-	
+
 func _physics_process(delta: float) -> void:
 	if !started: return
 	if Input.is_action_pressed("right_click"):

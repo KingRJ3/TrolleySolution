@@ -45,7 +45,15 @@ func _process(delta: float) -> void:
 	
 	velocity.y += 9.8
 	move_and_slide()
-
+	
+	color_time -= delta
+	if color_time < 0:
+		modulate = Color.WHITE
 
 func _on_timer_timeout() -> void:
 	timer_rate = true
+
+var color_time = .1
+func hover():
+	modulate = Color.YELLOW
+	color_time = .1

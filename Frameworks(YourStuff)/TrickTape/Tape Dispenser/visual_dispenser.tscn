@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ci4bfjktm2if8"]
+
+[ext_resource type="Texture2D" uid="uid://bybjw7g5qi4k" path="res://Tape Dispenser/Assets/TapeDispenser.png" id="1_b2qkf"]
+[ext_resource type="Texture2D" uid="uid://dj2y156mov38j" path="res://Tape Dispenser/Assets/taaaaaape.png" id="2_gb08p"]
+[ext_resource type="Script" uid="uid://ckme8n0e5sljx" path="res://Tape Dispenser/visual_dispenser.gd" id="2_kmoio"]
+
+[node name="dispenser" type="Sprite3D" unique_id=1690649860]
+layers = 2
+texture_filter = 0
+texture = ExtResource("1_b2qkf")
+script = ExtResource("2_kmoio")
+
+[node name="tape" type="Sprite3D" parent="." unique_id=1959950636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.60803187, 0, 0)
+layers = 2
+sorting_offset = 5.985
+modulate = Color(1, 1, 1, 0)
+texture_filter = 0
+texture = ExtResource("2_gb08p")

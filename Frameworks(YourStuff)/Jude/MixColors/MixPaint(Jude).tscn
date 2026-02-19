@@ -36,7 +36,7 @@ size = Vector2(430, 416.33234)
 size = Vector2(420, 219.24518)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lmeg"]
-size = Vector2(787, 313.625)
+size = Vector2(787, 152.33893)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yrm1"]
 size = Vector2(594.984, 167.02466)
@@ -48,9 +48,8 @@ script = ExtResource("2_utxgy")
 
 [node name="Panel" type="Panel" parent="." unique_id=2005969969]
 offset_left = 5.0
-offset_top = 55.0
 offset_right = 1150.0
-offset_bottom = 646.0
+offset_bottom = 648.0
 
 [node name="Description" type="RichTextLabel" parent="." unique_id=47162102]
 visible = false
@@ -199,7 +198,7 @@ position = Vector2(6, 303.8725)
 shape = SubResource("RectangleShape2D_ignvr")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="UI/Smoke Grenade/mixtures" unique_id=1398731251]
-position = Vector2(-365.42358, 13.856689)
+position = Vector2(-284.78052, 13.856689)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_7lmeg")
 

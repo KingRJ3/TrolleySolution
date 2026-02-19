@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://mp1ggdiu3nce"]
+
+[ext_resource type="Script" uid="uid://d2tklya03wutg" path="res://Misc/Transitions/WinScreens/first_win.gd" id="1_ysvbj"]
+
+[node name="FirstWin" type="Node2D" unique_id=397766219]
+script = ExtResource("1_ysvbj")
+
+[node name="StartPoint" type="Marker2D" parent="." unique_id=608610001]
+position = Vector2(9, -627)
+
+[node name="PlayPoint" type="Marker2D" parent="." unique_id=40277817]
+
+[node name="EndPoint" type="Marker2D" parent="." unique_id=1468816103]
+position = Vector2(-9, 864)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=472476669]

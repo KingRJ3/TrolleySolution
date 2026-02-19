@@ -1,6 +1,7 @@
 @abstract class_name Game extends Node2D
 var game_manager: GameManager
 
+@export var debug_intensity : float = 1.0
 ##call this signal when your game is done
 signal end_game(won : bool)
 
@@ -19,5 +20,5 @@ func get_intensity() -> float: #returns the intensity
 	if game_manager: 
 		return game_manager.game_intensity
 	else:
-		return 1.0 #testing mode
+		return debug_intensity #testing mode
 		

@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://c4vbajirj1ay5"]
+
+[ext_resource type="Texture2D" uid="uid://dh5mfwquuawvl" path="res://Sprites_1/ChatGPT Image Feb 11, 2026, 02_32_51 PM.png" id="1_77prf"]
+[ext_resource type="Script" uid="uid://gh0tw5gplkyp" path="res://ROCK.gd" id="1_io2xr"]
+[ext_resource type="Texture2D" path="res://sprite/Pebble-2t.png" id="2_o2w0t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2w0t"]
+size = Vector2(3571.75, 182.25)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_77prf"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_io2xr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_io2xr"]
+
+[node name="WWGame" type="Node2D" unique_id=618096148]
+
+[node name="Wawer" type="StaticBody2D" parent="." unique_id=1104488067]
+position = Vector2(1929.5, 745.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wawer" unique_id=2064567008]
+position = Vector2(-1398.5, -30.75)
+shape = SubResource("RectangleShape2D_o2w0t")
+
+[node name="movingBackGround" type="Parallax2D" parent="." unique_id=528855935]
+scroll_offset = Vector2(-1537, 369)
+repeat_size = Vector2(1535, 0)
+autoscroll = Vector2(-150, 0)
+repeat_times = 2
+
+[node name="Background" type="Sprite2D" parent="movingBackGround" unique_id=1848164950]
+position = Vector2(763, 92)
+texture = ExtResource("1_77prf")
+
+[node name="ROCK" type="RigidBody2D" parent="." unique_id=1114939820]
+position = Vector2(316, 425)
+physics_material_override = SubResource("PhysicsMaterial_77prf")
+linear_damp_mode = 1
+constant_force = Vector2(0, 9.8)
+script = ExtResource("1_io2xr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ROCK" unique_id=1710220230]
+shape = SubResource("CircleShape2D_io2xr")
+
+[node name="Sprite2D" type="Sprite2D" parent="ROCK" unique_id=834499183]
+visibility_layer = 15
+texture = ExtResource("2_o2w0t")
+
+[node name="Timer" type="Timer" parent="ROCK" unique_id=2049529781]
+wait_time = 0.15
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=346743414]
+position = Vector2(316, 615)
+scale = Vector2(1, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=161220598]
+shape = SubResource("RectangleShape2D_io2xr")
+
+[node name="badWater" type="Area2D" parent="." unique_id=81583495]
+position = Vector2(316, 621)
+scale = Vector2(1, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="badWater" unique_id=679402237]
+shape = SubResource("RectangleShape2D_io2xr")
+
+[connection signal="timeout" from="ROCK/Timer" to="ROCK" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="ROCK" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="ROCK" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="badWater" to="ROCK" method="_on_bad_water_body_entered"]

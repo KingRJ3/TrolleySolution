@@ -11,11 +11,10 @@ func _start_transition():
 	var tween_old = get_tree().create_tween()
 	tween_old.tween_property(old_scene_to_move, 'global_position', end_point.global_position, 1.1)
 	
-	
-	
 	var tween_new = get_tree().create_tween()
 	tween_new.tween_property(new_scene_to_move, 'global_position', play_point.global_position, 1.1)
 	await tween_old.finished
 	 
-	old_scene_to_move.queue_free()
+	safe_remove(old_scene_to_move)
 	transition_finished.emit()
+	

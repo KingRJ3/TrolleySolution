@@ -5,7 +5,6 @@ signal transition_finished
 var old_scene_to_move : SubViewportContainer
 var new_scene_to_move : SubViewportContainer
 
-
 func create_casing(game : Game) -> SubViewportContainer:
 	var sub_view_port_container = SubViewportContainer.new()
 	#add_child.call_deferred(sub_view_port_container)
@@ -27,6 +26,14 @@ func set_new_scene_to_move(game: Game): #instantiate and set position of new sce
 	new_scene_to_move = await create_casing(game)
 	add_child.call_deferred(new_scene_to_move)
 	new_scene_to_move.global_position.y += 2000 #move it out of here
-	await new_scene_to_move.tree_exited
-	queue_free() #clears the subviewport when done
+	await game.tree_exited
 	
+	safe_remove(self)#clears the subviewport when done
+
+func safe_remove(node_to_remove : Node):
+	print(node_to_remove, " removed")
+	node_to_remove.set_process(false)
+	node_to_remove.set_physics_process(false)
+	node_to_remove.set_process_input(false)
+	# Hide it so it doesn't flicker or stay visible
+	node_to_remove.queue_free()

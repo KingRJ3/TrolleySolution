@@ -17,8 +17,9 @@ const VANDALISM_JUDE_ = preload("res://Frameworks(YourStuff)/Jude/ShakeColors/Va
 const TRICK_TAPE = preload("res://Frameworks(YourStuff)/TrickTape/Main/game_main.tscn")
 const TROLLEY_MAIN_SCENE = preload("res://Frameworks(YourStuff)/TrolleyProblem/trolley_main_scene.tscn")
 const ROCK_SKIP = preload("res://Frameworks(YourStuff)/rock-skpping/ww_game.tscn")
+const PONG = preload("res://Frameworks(YourStuff)/Pong;)/scenes/main.tscn")
 
-var all_games : Array[PackedScene] = [BASEPLATE, ROCK_SKIP, TRICK_TAPE, VANDALISM_JUDE_]
+var all_games : Array[PackedScene] = [PONG]
 ## List of games left to play this stage before time scale increases
 var games_to_play_this_stage : Array[PackedScene]
 var score : int = 0

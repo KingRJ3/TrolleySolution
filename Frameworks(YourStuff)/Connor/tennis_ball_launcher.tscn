@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://d0jmc8km4re78"]
+
+[ext_resource type="Script" uid="uid://sscxyji4mrct" path="res://Frameworks(YourStuff)/Connor/tennis_ball_launcher.gd" id="1_sraha"]
+[ext_resource type="PackedScene" uid="uid://how4ldnve1vp" path="res://Frameworks(YourStuff)/Connor/tennis_ball.tscn" id="2_hp028"]
+[ext_resource type="Texture2D" uid="uid://qfj8r4e3gvlv" path="res://Frameworks(YourStuff)/Connor/art/tblauncher.png" id="3_hp028"]
+[ext_resource type="AudioStream" uid="uid://drc80dwlamh3w" path="res://Frameworks(YourStuff)/Connor/assets/dragon-studio-tennis-ball-hit-386155.mp3" id="4_cwfdu"]
+
+[node name="Tennis Ball Launcher" type="Node2D" unique_id=1646039142]
+script = ExtResource("1_sraha")
+tb_scene = ExtResource("2_hp028")
+metadata/_edit_lock_ = true
+
+[node name="Launch Timer" type="Timer" parent="." unique_id=1470394610]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1973588125]
+z_index = 1
+texture = ExtResource("3_hp028")
+metadata/_edit_lock_ = true
+
+[node name="TB Launch Point" type="Node2D" parent="." unique_id=1817531116]
+position = Vector2(-97, 12)
+metadata/_edit_lock_ = true
+
+[node name="TB Launch Sound" type="AudioStreamPlayer2D" parent="." unique_id=457658658]
+position = Vector2(-97, 12)
+stream = ExtResource("4_cwfdu")
+volume_db = -7.25
+max_polyphony = 15
+metadata/_edit_lock_ = true
+
+[connection signal="timeout" from="Launch Timer" to="." method="_on_launch_timer_timeout"]

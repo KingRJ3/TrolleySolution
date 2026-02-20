@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://67mvu2cf11so" path="res://Frameworks(YourStuff)/BasePlate/Baseplate.tscn" id="6_m5b0i"]
 
 [node name="GameManager" type="Node" unique_id=1844071725]
+process_mode = 3
+process_priority = 1
 script = ExtResource("1_j06dl")
 
 [node name="StartPoint" type="Marker2D" parent="." unique_id=1350634962]

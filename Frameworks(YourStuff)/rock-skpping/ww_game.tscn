@@ -121,7 +121,6 @@ volume_db = -3.0
 pitch_scale = 3.02
 
 [node name="Area2D" type="Area2D" parent="." unique_id=346743414]
-visible = false
 position = Vector2(316, 587)
 scale = Vector2(29, 5)
 
@@ -130,14 +129,14 @@ shape = SubResource("RectangleShape2D_io2xr")
 
 [node name="badWater" type="Area2D" parent="." unique_id=81583495]
 position = Vector2(316, 621)
-scale = Vector2(1, 0.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="badWater" unique_id=679402237]
-visible = false
+position = Vector2(2, 17)
 shape = SubResource("RectangleShape2D_io2xr")
 
 [node name="Shadow" type="Sprite2D" parent="badWater" unique_id=111682047]
-scale = Vector2(2.5, 2.5)
+position = Vector2(2, 1.0000134)
+scale = Vector2(2.5, 0.7499993)
 texture = ExtResource("4_o2w0t")
 
 [node name="Wawer" type="StaticBody2D" parent="." unique_id=1104488067]
@@ -156,6 +155,17 @@ offset_bottom = 79.0
 scale = Vector2(2, 2)
 text = "Press Space to Skip the rock
 when it hits the water!     >:)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Time" type="RichTextLabel" parent="." unique_id=143589931]
+offset_left = 349.0
+offset_top = 130.0
+offset_right = 569.0
+offset_bottom = 176.0
+scale = Vector2(2, 2)
+text = "time: "
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

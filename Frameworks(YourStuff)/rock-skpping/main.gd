@@ -3,4 +3,3 @@ extends Game
 
 func _start_game():
 	Engine.time_scale = clamp(get_intensity(), 1.0, 1.8)
-	

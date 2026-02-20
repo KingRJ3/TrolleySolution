@@ -18,15 +18,14 @@ const TRICK_TAPE = preload("res://Frameworks(YourStuff)/TrickTape/Main/game_main
 const TROLLEY_MAIN_SCENE = preload("res://Frameworks(YourStuff)/TrolleyProblem/trolley_main_scene.tscn")
 const ROCK_SKIP = preload("res://Frameworks(YourStuff)/rock-skpping/ww_game.tscn")
 
-var all_games : Array[PackedScene] = [ROCK_SKIP, TROLLEY_MAIN_SCENE, BASEPLATE, VANDALISM_JUDE_, TRICK_TAPE]
-
+var all_games : Array[PackedScene] = [BASEPLATE, ROCK_SKIP, TRICK_TAPE, VANDALISM_JUDE_]
 ## List of games left to play this stage before time scale increases
 var games_to_play_this_stage : Array[PackedScene]
 var score : int = 0
 var lives = 3
 
 @onready var old_scene : Game = $TransitionManager/SubViewportContainer/SubViewport/Game
-var new_scene = null
+var new_scene : Game = null
 
 func _ready() -> void:
 #region Loader of files in Games folder
@@ -68,6 +67,7 @@ func _on_game_ended(won : bool):
 		global_ui_container.set_lvl_intensity(game_intensity)
 		games_to_play_this_stage = all_games.duplicate()
 	
+	old_scene.call_deferred("set_process_mode", 4)
 	switch_scene(won)
 
 func switch_scene(won: bool):
@@ -79,8 +79,10 @@ func switch_scene(won: bool):
 	await new_game.ready
 	new_scene = new_game
 	new_game.end_game.connect(_on_game_ended)
-	transition_manager.transition(old_scene, new_game, won)
+	transition_manager.transition(old_scene, new_game, won, score, lives)
+	new_game.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_transition_manager_transition_finished() -> void:
+	new_scene.process_mode = Node.PROCESS_MODE_PAUSABLE
 	new_scene._start_game()
 	old_scene = new_scene

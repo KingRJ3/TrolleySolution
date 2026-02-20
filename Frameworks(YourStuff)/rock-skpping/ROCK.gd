@@ -22,15 +22,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if wind.playing == false:
 		wind.play()
-	if music.playing == false:
-		ww_game.queue_free()
+	
+	$"../Time".text = "Time: " + str(timer.time_left) 
+	
+	#if music.playing == false:
+		#ww_game.queue_free()
 	controls.position.x -= 20 * delta
 	if Input.is_action_just_pressed("skip") && inside_place == true:
 		skipped = true
 		print("skipped")
 	else: 
 		if Input.is_action_just_pressed("skip") && inside_place == false:
-			timer.wait_time +=0.5
+			timer.wait_time += 0.5
 	if skip_counter == 3:
 		Engine.time_scale = 1.0
 		ww_game.end_game.emit(true)

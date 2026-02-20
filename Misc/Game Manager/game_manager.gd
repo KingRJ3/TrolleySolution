@@ -15,6 +15,7 @@ const TRANS_TIME = 1.0
 const BASEPLATE = preload("res://Frameworks(YourStuff)/BasePlate/Baseplate.tscn")
 const VANDALISM_JUDE_ = preload("res://Frameworks(YourStuff)/Jude/ShakeColors/Vandalism(Jude).tscn")
 const TRICK_TAPE = preload("res://Frameworks(YourStuff)/TrickTape/Main/game_main.tscn")
+const TROLLEY_MAIN_SCENE = preload("res://Frameworks(YourStuff)/TrolleyProblem/trolley_main_scene.tscn")
 const ROCK_SKIP = preload("res://Frameworks(YourStuff)/rock-skpping/ww_game.tscn")
 
 var all_games : Array[PackedScene] = [BASEPLATE, ROCK_SKIP, TRICK_TAPE, VANDALISM_JUDE_]

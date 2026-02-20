@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://byuhuanhja38i"]
+
+[ext_resource type="Script" uid="uid://yopjijvusjcx" path="res://screams.gd" id="1_jqhgu"]
+[ext_resource type="AudioStream" uid="uid://vd3rh6nkva2l" path="res://Sound/AHHHHhhh.wav" id="2_vhuba"]
+[ext_resource type="AudioStream" uid="uid://bjtdpdgppvn3f" path="res://Sound/ahhhhhHHh.wav" id="3_65knj"]
+[ext_resource type="AudioStream" uid="uid://t7cadd1fnrlq" path="res://Sound/ahhHHHHHhh.wav" id="4_gwt63"]
+[ext_resource type="AudioStream" uid="uid://etmfsbd4hvq6" path="res://Sound/AHHHHHHHHHH.wav" id="5_s2h6s"]
+
+[node name="Screams" type="Node2D"]
+script = ExtResource("1_jqhgu")
+
+[node name="Ahhhhh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vhuba")
+
+[node name="AhhhHhhh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vhuba")
+
+[node name="AhhhhhHHh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_65knj")
+
+[node name="AhhHhhhHhh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gwt63")
+
+[node name="Ahhhhhhhhhh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s2h6s")
+
+[connection signal="finished" from="Ahhhhh" to="." method="_on_ahhhhh_finished"]
+[connection signal="finished" from="AhhhHhhh" to="." method="_on_ahhh_hhhh_finished"]
+[connection signal="finished" from="AhhhhhHHh" to="." method="_on_ahhhhh_h_hh_finished"]
+[connection signal="finished" from="AhhHhhhHhh" to="." method="_on_ahh_hhhh_hhh_finished"]
+[connection signal="finished" from="Ahhhhhhhhhh" to="." method="_on_ahhhhhhhhhh_finished"]

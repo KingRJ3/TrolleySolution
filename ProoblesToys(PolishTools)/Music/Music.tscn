@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://jjyy7bh1u55a"]
+
+[ext_resource type="Script" uid="uid://bso75uet1iy0r" path="res://ProoblesToys(PolishTools)/Music/AdaptiveMusic.gd" id="2_vatet"]
+
+[node name="AdaptiveMusic" type="Node" unique_id=1627563290 node_paths=PackedStringArray("tracks")]
+script = ExtResource("2_vatet")
+tracks = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]

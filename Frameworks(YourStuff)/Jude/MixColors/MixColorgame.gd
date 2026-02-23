@@ -30,7 +30,6 @@ func _start_game() -> void:
 	timer = 10/get_intensity()
 	await time_done
 	emit_signal("end_game", won)
-	print('game finished')
 
 func _process(delta: float) -> void:
 	if !started: return

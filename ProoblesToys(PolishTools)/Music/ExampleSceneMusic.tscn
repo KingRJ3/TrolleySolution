@@ -139,10 +139,22 @@ text = "[shake]
               Current Beat: "
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=841022963]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 441.0
+offset_top = -3.0
+offset_right = 828.0
+offset_bottom = 23.220343
+scale = Vector2(2.097608, 2.097608)
+text = "Press the button on time!"
+
+[node name="Button" type="Button" parent="." unique_id=1269063544]
+offset_left = 388.0
+offset_top = 56.0
+offset_right = 981.0
+offset_bottom = 171.0
+text = "CLICK ME"
 
 [connection signal="current_bar" from="AdaptiveMusic" to="." method="_on_adaptive_music_current_bar"]
 [connection signal="current_beat" from="AdaptiveMusic" to="." method="_on_adaptive_music_current_beat"]
 [connection signal="current_eight_bar" from="AdaptiveMusic" to="." method="_on_adaptive_music_current_eight_bar"]
 [connection signal="current_four_bar" from="AdaptiveMusic" to="." method="_on_adaptive_music_current_four_bar"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -20,10 +20,22 @@ extends Game
 ##USEFUL variables
 # var current_beat_index = 0 #current beat during the song
 
+var done = false
+func _start_game(): #this function is automatically called when the scene transitions in
+	pass
 
+## returns the game intensity if connected to the main game, otherwise returns an intensity of 1.0:
 func _process(delta: float) -> void:
 	$RichTextLabel.text = '[shake][rainbow]   
 			  Current Beat: ' + str(adaptive_music.current_beat_index)
+	if adaptive_music.current_beat_index > 10 and adaptive_music.current_beat_index < 15:
+		$Button.show()
+	else:
+		$Button.hide()
+	
+	if adaptive_music.current_beat_index > 25 and !done:
+		done = true
+		emit_signal('end_game', false)
 	if Input.is_key_pressed(KEY_1):
 		adaptive_music.increase_volume(0, -10.0, .01, 16)
 	if Input.is_key_pressed(KEY_2):
@@ -47,7 +59,6 @@ func _process(delta: float) -> void:
 	if adaptive_music.tracks[3].volume_db == -10:
 		voca.button_pressed = true
 
-
 func _on_adaptive_music_current_beat() -> void: #beat
 	$Small.scale.y *= .5
 	$Small/Node2DEffect.do_tween()
@@ -63,3 +74,8 @@ func _on_adaptive_music_current_four_bar() -> void: #16 beats
 func _on_adaptive_music_current_eight_bar() -> void: #32 beats
 	$Fat.scale.y *= .5
 	$Fat/Node2DEffect.do_tween()
+
+
+func _on_button_pressed() -> void:
+	emit_signal("end_game", true)
+	$Button.modulate = Color.GREEN

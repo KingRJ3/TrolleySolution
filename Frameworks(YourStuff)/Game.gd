@@ -1,4 +1,4 @@
-@abstract class_name Game extends Node2D
+@abstract class_name Game extends Node
 var game_manager: GameManager
 
 @export var debug_intensity : float = 1.0

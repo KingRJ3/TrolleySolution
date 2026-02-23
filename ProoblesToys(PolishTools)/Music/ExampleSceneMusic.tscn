@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://dw0ddd3gw7lee"]
+
+[ext_resource type="Script" uid="uid://bso75uet1iy0r" path="res://ProoblesToys(PolishTools)/Music/AdaptiveMusic.gd" id="1_gwv3w"]
+[ext_resource type="Script" uid="uid://c80w7qj43vxgi" path="res://ProoblesToys(PolishTools)/Music/example_scene_music.gd" id="1_ppg4l"]
+[ext_resource type="AudioStream" uid="uid://36r01hpf5tvj" path="res://ProoblesToys(PolishTools)/Music/TestSongs/INurSHOP.bass.wav" id="3_av0oc"]
+[ext_resource type="AudioStream" uid="uid://cdso2v37tvpga" path="res://ProoblesToys(PolishTools)/Music/TestSongs/INurSHOP.drum.wav" id="3_gwv3w"]
+[ext_resource type="AudioStream" uid="uid://quff0pn7b5wn" path="res://ProoblesToys(PolishTools)/Music/TestSongs/INurSHOP.rhod.wav" id="4_u83o6"]
+[ext_resource type="AudioStream" uid="uid://h2qhq8vme1dn" path="res://ProoblesToys(PolishTools)/Music/TestSongs/INurSHOP.voca.wav" id="5_je7w0"]
+[ext_resource type="Texture2D" uid="uid://5ppa8fa3kdqx" path="res://ProoblesToys(PolishTools)/Music/TestSongs/small.png" id="7_gslqq"]
+[ext_resource type="Script" uid="uid://cv1tqomq6d35i" path="res://Frameworks(YourStuff)/TrickTape/Effect Components/node2D_effect.gd" id="8_60vmj"]
+[ext_resource type="Texture2D" uid="uid://mxlc8owdfq0y" path="res://ProoblesToys(PolishTools)/Music/TestSongs/normalwhat.png" id="9_jotqx"]
+[ext_resource type="Texture2D" uid="uid://cjlhonjrrcpdp" path="res://ProoblesToys(PolishTools)/Music/TestSongs/skinny.png" id="10_6bvsx"]
+[ext_resource type="Texture2D" uid="uid://s3g6ysqr6kpc" path="res://ProoblesToys(PolishTools)/Music/TestSongs/fat.png" id="11_cmj1y"]
+
+[node name="ExampleSceneMusic" type="Node2D" unique_id=1818873361]
+script = ExtResource("1_ppg4l")
+
+[node name="AdaptiveMusic" type="Node" parent="." unique_id=442075850 node_paths=PackedStringArray("tracks")]
+script = ExtResource("1_gwv3w")
+tracks = [NodePath("AudioStreamPlayerBass"), NodePath("AudioStreamPlayerDrum"), NodePath("AudioStreamPlayerRhod"), NodePath("AudioStreamPlayerVoca")]
+metadata/_custom_type_script = "uid://bso75uet1iy0r"
+
+[node name="AudioStreamPlayerBass" type="AudioStreamPlayer" parent="AdaptiveMusic" unique_id=553312274]
+stream = ExtResource("3_av0oc")
+volume_db = -10.0
+
+[node name="AudioStreamPlayerDrum" type="AudioStreamPlayer" parent="AdaptiveMusic" unique_id=166626522]
+stream = ExtResource("3_gwv3w")
+volume_db = -80.0
+
+[node name="AudioStreamPlayerRhod" type="AudioStreamPlayer" parent="AdaptiveMusic" unique_id=2125078204]
+stream = ExtResource("4_u83o6")
+volume_db = -80.0
+
+[node name="AudioStreamPlayerVoca" type="AudioStreamPlayer" parent="AdaptiveMusic" unique_id=1248458902]
+stream = ExtResource("5_je7w0")
+volume_db = -80.0
+
+[node name="Bass" type="CheckBox" parent="." unique_id=1755745739]
+offset_left = 134.0
+offset_top = 36.0
+offset_right = 198.0
+offset_bottom = 67.0
+scale = Vector2(2.4439085, 2.4439085)
+button_pressed = true
+text = "Bass
+"
+
+[node name="Drum" type="CheckBox" parent="." unique_id=944033608]
+offset_left = 134.0
+offset_top = 126.99999
+offset_right = 198.0
+offset_bottom = 158.0
+scale = Vector2(2.4439085, 2.4439085)
+text = "Drum
+"
+
+[node name="Rhod" type="CheckBox" parent="." unique_id=1198541059]
+offset_left = 134.0
+offset_top = 225.99998
+offset_right = 198.0
+offset_bottom = 257.0
+scale = Vector2(2.4439085, 2.4439085)
+text = "Rhod"
+
+[node name="Voca" type="CheckBox" parent="." unique_id=1259886743]
+offset_left = 134.0
+offset_top = 331.99997
+offset_right = 198.0
+offset_bottom = 362.99997
+scale = Vector2(2.4439085, 2.4439085)
+text = "Voca"
+
+[node name="Small" type="Sprite2D" parent="." unique_id=1396464142]
+position = Vector2(442, 402)
+texture = ExtResource("7_gslqq")
+offset = Vector2(10, -58)
+
+[node name="Node2DEffect" type="Node" parent="Small" unique_id=1149946323 node_paths=PackedStringArray("affected_node")]
+script = ExtResource("8_60vmj")
+affected_node = NodePath("..")
+scale_amount = Vector2(1, 1)
+trans_type = 11
+ease_type = 1
+tween_duration = 0.1
+metadata/_custom_type_script = "uid://cv1tqomq6d35i"
+
+[node name="Normalwhat" type="Sprite2D" parent="." unique_id=1575104946]
+position = Vector2(874, 466)
+texture = ExtResource("9_jotqx")
+offset = Vector2(-5, -141)
+
+[node name="Node2DEffect" type="Node" parent="Normalwhat" unique_id=603426321 node_paths=PackedStringArray("affected_node")]
+script = ExtResource("8_60vmj")
+affected_node = NodePath("..")
+scale_amount = Vector2(1, 1)
+trans_type = 11
+ease_type = 1
+tween_duration = 0.2
+metadata/_custom_type_script = "uid://cv1tqomq6d35i"
+
+[node name="Skinny" type="Sprite2D" parent="." unique_id=1955305281]
+position = Vector2(657, 454)
+texture = ExtResource("10_6bvsx")
+offset = Vector2(-2, -139)
+
+[node name="Node2DEffect" type="Node" parent="Skinny" unique_id=1480970532 node_paths=PackedStringArray("affected_node")]
+script = ExtResource("8_60vmj")
+affected_node = NodePath("..")
+scale_amount = Vector2(1, 1)
+trans_type = 11
+ease_type = 1
+tween_duration = 0.5
+metadata/_custom_type_script = "uid://cv1tqomq6d35i"
+
+[node name="Fat" type="Sprite2D" parent="." unique_id=1553848471]
+position = Vector2(1069, 456)
+texture = ExtResource("11_cmj1y")
+offset = Vector2(-7, -147)
+
+[node name="Node2DEffect" type="Node" parent="Fat" unique_id=1923430311 node_paths=PackedStringArray("affected_node")]
+script = ExtResource("8_60vmj")
+affected_node = NodePath("..")
+scale_amount = Vector2(1, 1)
+trans_type = 11
+ease_type = 1
+tween_duration = 2.0
+metadata/_custom_type_script = "uid://cv1tqomq6d35i"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1773606445]
+offset_left = 218.0
+offset_top = 550.0
+offset_right = 623.0
+offset_bottom = 621.0
+scale = Vector2(3.408502, 3.408502)
+pivot_offset = Vector2(23.296906, 44.415894)
+bbcode_enabled = true
+text = "[shake]   
+              Current Beat: "
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=841022963]
+offset_left = 441.0
+offset_top = -3.0
+offset_right = 828.0
+offset_bottom = 23.220343
+scale = Vector2(2.097608, 2.097608)
+text = "Press the button on time!"
+
+[node name="Button" type="Button" parent="." unique_id=1269063544]
+offset_left = 388.0
+offset_top = 56.0
+offset_right = 981.0
+offset_bottom = 171.0
+text = "CLICK ME"
+
+[connection signal="current_bar" from="AdaptiveMusic" to="." method="_on_adaptive_music_current_bar"]
+[connection signal="current_beat" from="AdaptiveMusic" to="." method="_on_adaptive_music_current_beat"]
+[connection signal="current_eight_bar" from="AdaptiveMusic" to="." method="_on_adaptive_music_current_eight_bar"]
+[connection signal="current_four_bar" from="AdaptiveMusic" to="." method="_on_adaptive_music_current_four_bar"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -19,10 +19,11 @@ const TROLLEY_MAIN_SCENE = preload("res://Frameworks(YourStuff)/TrolleyProblem/t
 const ROCK_SKIP = preload("res://Frameworks(YourStuff)/rock-skpping/ww_game.tscn")
 const TYSON = preload("res://Frameworks(YourStuff)/Connor/main.tscn")
 const FINISH_HIM = preload("res://Frameworks(YourStuff)/Kevin/FinishHim/scenes/game_container.tscn")
-const PONG = preload("res://Frameworks(YourStuff)/Pong;)/scenes/main.tscn") # for second stage
+const MIX_PAINT_JUDE_ = preload("res://Frameworks(YourStuff)/Jude/MixColors/MixPaint(Jude).tscn")
+const EXAMPLE_SCENE_MUSIC = preload("res://ProoblesToys(PolishTools)/Music/ExampleSceneMusic.tscn")
 
+var all_games : Array[PackedScene] = [BASEPLATE, TROLLEY_MAIN_SCENE, FINISH_HIM, ROCK_SKIP, VANDALISM_JUDE_, TRICK_TAPE, TYSON, MIX_PAINT_JUDE_, EXAMPLE_SCENE_MUSIC]
 
-var all_games : Array[PackedScene] = [BASEPLATE, TROLLEY_MAIN_SCENE, FINISH_HIM, ROCK_SKIP, VANDALISM_JUDE_, TRICK_TAPE, TYSON]
 ## List of games left to play this stage before time scale increases
 var games_to_play_this_stage : Array[PackedScene]
 var score : int = 0
